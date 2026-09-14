@@ -1,0 +1,21 @@
+# Credentials, never commit
+_brief/CREDENTIALS.local.md
+*.local.md
+*credentials*
+*.env
+
+# OS and editor noise
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Local preview scratch
+_dev-*.html
