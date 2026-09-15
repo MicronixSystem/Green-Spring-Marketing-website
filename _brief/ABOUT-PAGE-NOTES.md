@@ -100,6 +100,43 @@ at `.6` opacity measured 3.4 to 3.7:1, which passes only as large text and these
 are 10.5 to 12px. Every Forest label on both pages is now at `.78`, measured
 between 5.17:1 and 6.15:1 depending on the ground.
 
+## Filling the sections
+
+Rupam flagged dead space in three sections. Rather than patch only those, I
+measured every section: sampling a grid over each one, counting the share
+actually covered by content, and finding the largest single empty rectangle.
+That showed the opening and closing bands were worse than the three named.
+
+| Section | Filled before | after | Largest void before | after |
+|---|---|---|---|---|
+| Growth | 47% | 100% | 31% | 0% |
+| Leadership | 51% | 83% | 31% | 12% |
+| Expertise | 62% | 67% | 31% | 8% |
+| Statement | 56% | 61% | 20% | 18% |
+| Hero | 55% | 60% | 21% | 15% |
+| Close | 26% | 33% | 27% | 19% |
+| Opening | 15% | 25% | 35% | 27% |
+
+What changed:
+
+- **Growth** is now a full bleed band with both columns running the whole
+  height, the photograph left and the white plate overlapping it from the
+  right. The plate carries the three stages of an engagement, which fills it.
+- **Leadership** rows are the grid themselves. The portrait is a tall panel
+  bled to the page edge, the bio runs in two columns so it reaches the far
+  side, and the second row is mirrored on white.
+- **Expertise** rows now anchor both edges the way an index is set: name flush
+  left, description flush right, a mark at the far edge. The dead right third
+  is gone.
+- **Opening** statement runs the full measure instead of stopping two thirds
+  across, and the three facts sit directly beneath it.
+- **Close** is three columns, heading and action left, the lede centred in the
+  middle, contact details dividing the right into equal bands.
+
+The opening and closing bands still read low on the coverage measure. Both are
+type on a flat ground with no photograph, so the number is always going to be
+low there; what matters is that neither has a hole in it any more.
+
 ## Checks run
 
 - Zero em dashes. No banned phrases. No placeholders. No numbered list markers.
@@ -109,4 +146,7 @@ between 5.17:1 and 6.15:1 depending on the ground.
   tablet width and 10.5:1 on desktop.
 - Nav checked at 1181, 1280, 1366 and 1440: no crowding.
 - 390, 768 and desktop checked. No horizontal overflow anywhere.
+- Portraits are held at a size their source files can carry. Below 980px they
+  stop stretching into panels and sit as squares, because Linda's original is
+  only 397px and was visibly upscaled and over cropped as a tall panel.
 - Hero is capped at one screen minus the nav, matching the home page.

@@ -2,6 +2,10 @@
    About page
    Same system as the home page: same tokens, type, buttons, nav and footer.
    Every section structure here is new. Nothing is carried over from index.
+
+   Sections are built to fill their height. Columns stretch rather than float
+   in the middle of empty ground, and lists divide their column into equal
+   bands so height reads as structure instead of slack.
    ========================================================================== */
 
 /* ==========================================================================
@@ -11,18 +15,31 @@
    ========================================================================== */
 .ab-hero{margin-top:var(--nav-h);min-height:calc(100svh - var(--nav-h));
   display:grid;grid-template-rows:1fr auto;background:var(--stone)}
-.ab-hero__copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,40%);
-  gap:clamp(24px,4vw,72px);align-content:center;align-items:end;
-  padding-block:clamp(28px,4.4vh,60px)}
-.ab-hero__eyebrow{color:var(--forest);opacity:.78;margin-bottom:clamp(14px,1.9vh,24px)}
+.ab-hero__copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,38%);
+  gap:clamp(24px,4vw,72px);align-items:stretch;
+  padding-block:clamp(26px,4vh,54px)}
+/* the two blocks spread over the full height rather than sitting in the middle */
+.ab-hero__lead{display:flex;flex-direction:column;justify-content:space-between;
+  gap:clamp(20px,3vh,40px)}
+.ab-hero__eyebrow{color:var(--forest);opacity:.78}
 .ab-hero h1{color:var(--forest);font-size:clamp(34px,4.55vw,70px)}
 .ab-hero h1 .mask>span{white-space:nowrap}
 .ab-hero h1 em{font-style:italic;font-weight:300}
-.ab-hero__side{color:var(--ink-soft);max-width:38ch;padding-bottom:.5em}
-.ab-hero__side .rule{width:56px;margin-bottom:clamp(16px,2vh,24px);opacity:.4}
+.ab-hero__side{display:flex;flex-direction:column;justify-content:flex-end;
+  gap:clamp(14px,2vh,22px);color:var(--ink-soft)}
+.ab-hero__side .rule{width:56px;opacity:.4}
+.ab-hero__side p{max-width:34ch}
+.ab-hero__stats{display:grid;grid-template-columns:repeat(2,1fr);
+  gap:clamp(14px,2vw,26px);margin-top:clamp(12px,2vh,24px)}
+.ab-hero__stats div{border-top:1px solid rgba(23,61,46,.22);
+  padding-top:clamp(10px,1.4vh,16px)}
+.ab-hero__stats b{display:block;font-family:var(--serif);font-weight:400;
+  font-size:clamp(25px,2.5vw,38px);line-height:1;color:var(--forest);letter-spacing:-.02em}
+.ab-hero__stats span{display:block;margin-top:.55em;font-size:clamp(12.5px,.86vw,14px);
+  line-height:1.4;color:var(--ink-soft)}
 
 .ab-hero__band{position:relative;overflow:hidden;
-  height:clamp(180px,30svh,320px);background:var(--forest-deep)}
+  height:clamp(170px,27svh,300px);background:var(--forest-deep)}
 .ab-hero__band img{width:100%;height:100%;object-fit:cover;object-position:center 62%;
   transform:scale(1.08);transition:transform 2.2s var(--ease-out)}
 .loaded .ab-hero__band img{transform:scale(1)}
@@ -33,30 +50,34 @@
   font-size:clamp(20px,2.4vw,34px);line-height:1.12;max-width:15ch;text-align:right}
 
 /* ==========================================================================
-   Opening. One statement across the full measure, then three plain facts.
+   Opening. A statement across the width, then three facts that divide the
+   remaining height into equal columns.
    ========================================================================== */
-.ab-intro{background:var(--stone-light);padding-block:var(--rhythm)}
-.ab-intro__stmt{font-family:var(--serif);font-weight:400;line-height:1.16;
+.ab-intro{background:var(--stone-light);padding-block:clamp(52px,6vw,88px)}
+.ab-intro__stmt{font-family:var(--serif);font-weight:400;line-height:1.14;
   letter-spacing:-.022em;color:var(--forest);
-  font-size:clamp(25px,3.15vw,48px);max-width:24ch;
-  padding-bottom:clamp(40px,5vw,74px)}
+  font-size:clamp(26px,3.35vw,50px);
+  padding-bottom:clamp(32px,4vw,58px)}
 .ab-intro__stmt em{font-style:italic;font-weight:300}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,56px)}
-.fact{border-top:1px solid rgba(23,61,46,.2);padding-top:clamp(18px,2vw,26px)}
-.fact .label{color:var(--forest);opacity:.78;margin-bottom:clamp(10px,1.2vw,16px)}
-.fact p{color:var(--ink-soft);font-size:clamp(14.5px,1.05vw,17px);line-height:1.6}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(20px,3vw,56px);align-items:stretch}
+.fact{border-top:1px solid rgba(23,61,46,.22);padding-top:clamp(18px,2vw,26px);
+  display:flex;flex-direction:column;gap:clamp(12px,1.6vw,20px)}
+.fact .label{color:var(--forest);opacity:.78}
+.fact p:last-child{color:var(--ink-soft);font-size:clamp(14.5px,1.05vw,17px);
+  line-height:1.6}
 
 /* ==========================================================================
    Expertise, set as a ledger. Full width rows, no icons, no cards.
    ========================================================================== */
-.ab-index{background:var(--stone);padding-block:var(--rhythm)}
-.ab-index__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,38%);
-  gap:clamp(20px,3vw,56px);align-items:end;margin-bottom:clamp(36px,4.4vw,64px)}
-.ab-index__head h2{color:var(--forest);max-width:13ch}
+.ab-index{background:var(--stone);padding-block:clamp(62px,7.2vw,112px)}
+.ab-index__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,34%);
+  gap:clamp(20px,3vw,56px);align-items:end;margin-bottom:clamp(28px,3.4vw,50px)}
+.ab-index__head h2{color:var(--forest);max-width:19ch}
 .ab-index__head p{color:var(--ink-soft);max-width:36ch;padding-bottom:.4em}
 
 .ledger{border-top:1px solid rgba(23,61,46,.22)}
-.led{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,44%) auto;
+.led{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,42%) auto;
   gap:clamp(16px,2.6vw,48px);align-items:center;
   padding:clamp(20px,2.4vw,34px) clamp(14px,1.6vw,26px);
   border-bottom:1px solid rgba(23,61,46,.22);
@@ -64,55 +85,72 @@
 .led:hover{background:var(--white);padding-left:clamp(22px,2.6vw,42px)}
 .led h3{font-family:var(--serif);font-weight:400;letter-spacing:-.022em;
   color:var(--forest);font-size:clamp(21px,2.5vw,38px);line-height:1.08}
-.led p{color:var(--ink-soft);font-size:clamp(14px,1vw,16.5px);line-height:1.55}
-.led__mark{width:26px;height:26px;flex:0 0 auto;opacity:0;transform:translateX(-8px);
+.led p{color:var(--ink-soft);font-size:clamp(14px,1vw,16.5px);line-height:1.55;
+  text-align:right}
+.led__mark{width:24px;height:24px;flex:0 0 auto;opacity:.3;transform:none;
   transition:opacity .45s var(--ease),transform .45s var(--ease-out)}
 .led__mark svg{width:100%;height:100%;stroke:var(--sage);fill:none;stroke-width:1.4;
   stroke-linecap:round;stroke-linejoin:round}
-.led:hover .led__mark{opacity:1;transform:none}
+.led:hover .led__mark{opacity:1;transform:translateX(4px)}
 
 /* ==========================================================================
-   Growth. A plate overlapping the picture, a device the home page never uses.
+   Growth. Photograph left, a white panel overlapping it from the right. Both
+   columns run the full height of the band, so there is no idle ground.
    ========================================================================== */
-.ab-grow{background:var(--stone-warm);padding-block:var(--rhythm);overflow:hidden}
-.ab-grow__in{display:grid;grid-template-columns:minmax(0,52%) minmax(0,1fr);
-  align-items:center}
-.ab-grow__media{grid-area:1/2/2/3;position:relative;aspect-ratio:4/5;
-  background:var(--forest-deep);overflow:hidden}
-.ab-grow__media img{width:100%;height:100%;object-fit:cover;
+.ab-grow{background:var(--stone-warm);overflow:hidden;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,50%);
+  align-items:stretch;min-height:min(74svh,620px)}
+.ab-grow__media{position:relative;overflow:hidden;background:var(--forest-deep)}
+.ab-grow__media img{width:100%;height:100%;object-fit:cover;object-position:center 42%;
   transform:scale(1.07);transition:transform 1.4s var(--ease-out)}
 .ab-grow.in .ab-grow__media img{transform:scale(1)}
-.ab-grow__plate{grid-area:1/1/2/2;position:relative;z-index:2;
-  background:var(--white);padding:clamp(32px,4vw,64px);
-  margin-right:clamp(-120px,-7vw,-40px);
-  box-shadow:0 44px 100px -60px rgba(23,61,46,.5)}
-.ab-grow__plate .label{color:var(--forest);opacity:.78;margin-bottom:clamp(16px,1.8vw,24px)}
-.ab-grow__plate h2{color:var(--forest);margin-bottom:clamp(18px,2vw,28px)}
-.ab-grow__plate p{color:var(--ink-soft);margin-bottom:1.1em}
-.ab-grow__plate p:last-child{margin-bottom:0}
+.ab-grow__plate{position:relative;z-index:2;background:var(--white);
+  margin-left:clamp(-110px,-6vw,-36px);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(34px,4.2vw,62px);
+  padding-right:max(clamp(34px,4.2vw,62px),calc(50vw - var(--maxw) / 2 + var(--gut)));
+  box-shadow:-40px 0 100px -60px rgba(23,61,46,.5)}
+.ab-grow__plate .label{color:var(--forest);opacity:.78;margin-bottom:clamp(14px,1.6vw,22px)}
+.ab-grow__plate h2{color:var(--forest);margin-bottom:clamp(16px,1.8vw,26px)}
+.ab-grow__plate p{color:var(--ink-soft);margin-bottom:1.05em}
+.ab-grow__plate p:last-of-type{margin-bottom:0}
+.ab-grow__steps{list-style:none;margin:clamp(22px,2.6vw,36px) 0 0;padding:0;display:grid}
+.ab-grow__steps li{display:flex;gap:clamp(12px,1.4vw,18px);align-items:baseline;
+  padding-block:clamp(11px,1.3vw,15px);border-top:1px solid rgba(23,61,46,.16);
+  font-size:clamp(14px,1vw,16px);line-height:1.5;color:var(--charcoal)}
+.ab-grow__steps i{flex:0 0 auto;width:5px;height:5px;border-radius:50%;
+  background:var(--sage);transform:translateY(-3px)}
 
 /* ==========================================================================
-   Leadership. Real portraits from the client's own site. Second row mirrored
-   and on a different ground so the pair does not read as a repeated card.
+   Leadership. Real portraits from the client's own site. The portrait is a
+   tall panel bled to the page edge, the copy fills the rest of the row, and
+   the second row is mirrored on a different ground.
    ========================================================================== */
 .ab-people{background:var(--stone)}
-.ab-people__head{padding-block:var(--rhythm) clamp(30px,3.6vw,56px)}
-.ab-people__head h2{color:var(--forest);max-width:14ch;margin-bottom:.45em}
-.ab-people__head p{color:var(--ink-soft);max-width:52ch}
+.ab-people__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,34%);
+  gap:clamp(20px,3vw,56px);align-items:end;
+  padding-block:clamp(62px,7.2vw,112px) clamp(24px,2.8vw,42px)}
+.ab-people__head h2{color:var(--forest);max-width:19ch}
+.ab-people__head p{color:var(--ink-soft);max-width:38ch;padding-bottom:.4em}
 
-.who{padding-block:clamp(38px,4.6vw,72px)}
+.who{display:grid;grid-template-columns:minmax(0,clamp(200px,23vw,330px)) minmax(0,1fr);
+  align-items:stretch;background:var(--stone)}
 .who--light{background:var(--white)}
-.who__in{display:grid;grid-template-columns:auto minmax(0,1fr);
-  gap:clamp(24px,4vw,72px);align-items:start}
-.who--alt .who__in{grid-template-columns:minmax(0,1fr) auto}
+.who--alt{grid-template-columns:minmax(0,1fr) minmax(0,clamp(200px,23vw,330px))}
+.who__face{position:relative;overflow:hidden;background:var(--stone-warm)}
+.who__face img{width:100%;height:100%;object-fit:cover;object-position:center center;
+  filter:grayscale(.14)}
 .who--alt .who__face{grid-column:2;grid-row:1}
-.who--alt .who__body{grid-column:1;grid-row:1}
-.who__face{width:clamp(120px,15vw,210px);flex:0 0 auto}
-.who__face img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;
-  filter:grayscale(.12)}
+.who__body{display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(34px,4.2vw,66px);
+  padding-left:max(clamp(34px,4.2vw,66px),calc(50vw - var(--maxw) / 2 + var(--gut)))}
+.who--alt .who__body{grid-column:1;grid-row:1;
+  padding-left:max(clamp(34px,4.2vw,66px),calc(50vw - var(--maxw) / 2 + var(--gut)));
+  padding-right:clamp(34px,4.2vw,66px)}
 .who__name{color:var(--forest);font-size:clamp(28px,3.4vw,54px);margin-bottom:.22em}
-.who__role{color:var(--forest);opacity:.72;margin-bottom:clamp(18px,2vw,28px)}
-.who__bio{color:var(--ink-soft);max-width:62ch;margin-bottom:clamp(20px,2.2vw,30px)}
+.who__role{color:var(--forest);opacity:.78;margin-bottom:clamp(16px,1.8vw,26px)}
+.who__bio{color:var(--ink-soft);margin-bottom:clamp(18px,2vw,28px);
+  columns:2;column-gap:clamp(26px,3vw,52px);orphans:2;widows:2}
 .who__tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
   gap:8px clamp(10px,1.2vw,16px)}
 .who__tags li{font-size:clamp(12px,.86vw,13.5px);letter-spacing:.09em;
@@ -123,37 +161,44 @@
 /* ==========================================================================
    Statement. The home page's dark band runs photograph left, white type right.
    This is its mirror: the drawing sits right as a full height panel, the type
-   sits left in Forest on Stone. No type ever crosses the branches.
+   sits left in Forest on Stone. The band hugs the quote, so nothing floats.
    ========================================================================== */
 .ab-quote{background:var(--stone);display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,44%);align-items:stretch;
-  min-height:min(78svh,680px)}
+  grid-template-columns:minmax(0,1fr) minmax(0,40%);align-items:stretch}
 .ab-quote__media{position:relative;overflow:hidden;background:var(--stone-light)}
-.ab-quote__media img{width:100%;height:100%;object-fit:cover;object-position:28% center}
-.ab-quote__in{display:flex;align-items:center;
-  padding-block:clamp(56px,8vw,110px);
+.ab-quote__media img{width:100%;height:100%;object-fit:cover;object-position:30% center}
+.ab-quote__in{display:flex;flex-direction:column;justify-content:center;
+  padding-block:clamp(50px,6.2vw,88px);
   padding-left:max(var(--gut),calc(50vw - var(--maxw) / 2 + var(--gut)));
-  padding-right:clamp(30px,5vw,90px)}
-.ab-quote blockquote{margin:0;max-width:min(100%,620px)}
+  padding-right:clamp(30px,5vw,86px)}
+.ab-quote blockquote{margin:0;max-width:min(100%,720px)}
 .ab-quote__mark{display:block;width:46px;height:1px;background:var(--forest);
-  opacity:.45;margin-bottom:clamp(22px,2.6vw,34px)}
+  opacity:.45;margin-bottom:clamp(20px,2.4vw,32px)}
 .ab-quote p{font-family:var(--serif);font-weight:400;letter-spacing:-.022em;
-  line-height:1.2;color:var(--forest);font-size:clamp(21px,2.45vw,37px)}
-.ab-quote cite{display:block;margin-top:clamp(22px,2.6vw,34px);font-style:normal;
+  line-height:1.18;color:var(--forest);font-size:clamp(23px,2.9vw,46px)}
+.ab-quote cite{display:block;margin-top:clamp(20px,2.4vw,32px);font-style:normal;
   font-family:var(--sans);font-size:clamp(10.5px,.78vw,12px);font-weight:500;
   letter-spacing:.26em;text-transform:uppercase;color:var(--forest);opacity:.78}
 
 /* ==========================================================================
-   Close. Type only, no photograph, so it does not echo the home page's.
+   Close. Type only, no photograph, so it does not echo the home page's. The
+   contact column divides the band into equal bands rather than trailing off.
    ========================================================================== */
-.ab-close{background:var(--forest);color:var(--stone);padding-block:var(--rhythm)}
-.ab-close__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,38%);
-  gap:clamp(30px,5vw,90px);align-items:end}
-.ab-close h2{color:var(--white);max-width:12ch;margin-bottom:clamp(22px,2.4vw,32px)}
-.ab-close__lede{color:var(--moss);max-width:34ch;margin-bottom:clamp(28px,3vw,40px)}
-.ab-close__meta{display:grid;gap:clamp(12px,1.4vw,18px)}
-.ab-close__meta div{border-top:1px solid rgba(237,235,229,.24);padding-top:clamp(12px,1.4vw,18px)}
-.ab-close__meta .label{color:var(--moss);margin-bottom:.5em}
+.ab-close{background:var(--forest);color:var(--stone);
+  padding-block:clamp(52px,6vw,84px)}
+/* three columns so nothing dead runs through the middle of the band */
+.ab-close__in{display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) minmax(0,.9fr);
+  gap:clamp(26px,3.6vw,64px);align-items:stretch}
+.ab-close__copy{display:flex;flex-direction:column;align-items:flex-start;
+  justify-content:space-between;gap:clamp(22px,2.8vw,34px)}
+.ab-close__say{display:flex;flex-direction:column;justify-content:center}
+.ab-close h2{color:var(--white);max-width:11ch}
+.ab-close__lede{color:var(--moss)}
+.ab-close__meta{display:flex;flex-direction:column;gap:0}
+.ab-close__meta div{flex:1 1 0;display:flex;flex-direction:column;justify-content:center;
+  border-top:1px solid rgba(237,235,229,.24);padding-block:clamp(13px,1.6vw,20px)}
+.ab-close__meta .label{color:var(--moss);margin-bottom:.55em}
 .ab-close__meta a,.ab-close__meta span{color:var(--stone);font-size:clamp(15px,1.1vw,17px)}
 .ab-close__meta a:hover{color:var(--white)}
 
@@ -162,41 +207,57 @@
    ========================================================================== */
 @media (max-width:1180px){
   .ab-hero__copy{grid-template-columns:1fr;align-items:start;gap:clamp(20px,3vw,32px)}
-  .ab-hero__side{padding-bottom:0;max-width:46ch}
-  .ab-quote{grid-template-columns:minmax(0,1fr) minmax(0,40%)}
-  .ab-quote blockquote{max-width:min(100%,540px)}
-  .ab-close__in{grid-template-columns:1fr;gap:clamp(30px,4vw,44px)}
+  .ab-hero__side{justify-content:flex-start;max-width:52ch}
+  .ab-quote{grid-template-columns:minmax(0,1fr) minmax(0,38%)}
+  .who__bio{columns:1}
+  .ab-close__in{grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(26px,3.4vw,44px)}
+  .ab-close__copy{grid-column:1/-1;flex-direction:row;align-items:flex-end;
+    justify-content:space-between;flex-wrap:wrap;
+    margin-bottom:clamp(26px,3.4vw,44px)}
+  .ab-close__copy>div{max-width:34ch}
+  .ab-close__meta{grid-column:1/-1}
+  .ab-close__meta{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.6vw,36px)}
+  .ab-close__meta div{flex:none}
 }
 
 @media (max-width:980px){
   .led{grid-template-columns:minmax(0,1fr) minmax(0,46%);gap:clamp(14px,2vw,28px)}
   .led__mark{display:none}
-  .ab-index__head{grid-template-columns:1fr}
-  .ab-index__head p{padding-bottom:0}
-  .ab-grow__in{grid-template-columns:1fr;gap:0}
-  .ab-grow__media{grid-area:1/1/2/2;aspect-ratio:16/11}
-  .ab-grow__plate{grid-area:2/1/3/2;margin-right:0;
-    margin-inline:clamp(14px,4vw,48px);margin-top:clamp(-72px,-8vw,-36px)}
+  .ab-index__head,.ab-people__head{grid-template-columns:1fr}
+  .ab-index__head p,.ab-people__head p{padding-bottom:0}
+  .ab-grow{grid-template-columns:1fr;min-height:0}
+  .ab-grow__media{aspect-ratio:16/10}
+  .ab-grow__plate{margin-left:0;margin-inline:clamp(14px,4vw,48px);
+    margin-top:clamp(-72px,-8vw,-36px);padding-right:clamp(34px,4.2vw,62px)}
+  .who,.who--alt{grid-template-columns:1fr}
+  .who__face,.who--alt .who__face{grid-column:1;grid-row:1;
+    width:clamp(132px,21vw,190px);aspect-ratio:1;align-self:start;
+    margin:clamp(30px,4.4vw,48px) 0 0 max(var(--gut),clamp(24px,4vw,44px))}
+  .who__body,.who--alt .who__body{grid-column:1;grid-row:2;
+    padding:clamp(20px,3vw,30px) var(--gut) clamp(32px,5vw,48px);
+    padding-left:max(var(--gut),clamp(24px,4vw,44px))}
   .facts{grid-template-columns:1fr;gap:0}
-  .fact{padding-block:clamp(18px,2.6vw,24px)}
-  .fact:last-child{border-bottom:1px solid rgba(23,61,46,.2)}
+  .fact{padding-block:clamp(16px,2.4vw,22px)}
+  .fact:last-child{border-bottom:1px solid rgba(23,61,46,.22)}
 }
 
 @media (max-width:640px){
-  .ab-hero__band{height:clamp(160px,26svh,230px)}
+  .ab-hero__band{height:clamp(150px,24svh,210px)}
   .ab-hero__line{font-size:clamp(17px,4.6vw,22px);max-width:12ch}
+  .ab-hero__stats{gap:12px}
   .led{grid-template-columns:1fr;gap:6px;padding-inline:0}
+  .led p{text-align:left}
   .led:hover{padding-left:0}
-  .who__in,.who--alt .who__in{grid-template-columns:1fr;gap:clamp(18px,4vw,26px)}
-  .who--alt .who__face,.who--alt .who__body{grid-column:1}
-  .who--alt .who__face{grid-row:1}
-  .who--alt .who__body{grid-row:2}
-  .who__face{width:clamp(108px,34vw,150px)}
-  .ab-quote{grid-template-columns:1fr;min-height:0}
-  .ab-quote__media{order:-1;height:min(34svh,260px)}
+  .who__face,.who--alt .who__face{width:clamp(120px,32vw,150px);
+    margin:clamp(26px,6vw,34px) 0 0 var(--gut)}
+  .who__body,.who--alt .who__body{padding:clamp(18px,4vw,24px) var(--gut) clamp(28px,7vw,40px)}
+  .ab-quote{grid-template-columns:1fr}
+  .ab-quote__media{order:-1;height:min(32svh,250px)}
   .ab-quote__media img{object-position:center 40%}
   .ab-quote__in{padding:clamp(30px,7vw,46px) var(--gut) clamp(38px,8vw,56px)}
-  .ab-quote blockquote{max-width:100%}
+  .ab-close__meta{grid-template-columns:1fr}
+  .ab-close__meta div{padding-block:14px}
+  .ab-close__copy{flex-direction:column;align-items:flex-start}
 }
 
 @media (prefers-reduced-motion:reduce){
