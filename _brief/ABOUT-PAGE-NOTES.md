@@ -165,6 +165,31 @@ full size. Two height queries step the type and spacing down below 900px and
 again below 740px. Verified at 1440x700, 1600x900 and 1880x1010: all three
 sections land exactly on the budget at every one.
 
+## Third pass: size the type, stop stretching
+
+Rupam's point, and it was right: filling a section by stretching flex items
+spreads thin content over a tall box. It is not the same as designing something
+that wants the room.
+
+**How an engagement starts** keeps its one screen, but the type carries it now
+instead of the gaps. The heading runs to 56px over three lines, the paragraph to
+22px, and each stage to 21px with real padding. The stages no longer divide the
+plate into equal stretched bands; they hug their own copy. Content now measures
+750px of the 794px available, so the leftover is a 44px gap rather than three
+100px voids.
+
+**Leadership** no longer forces a screen. It hugs its content at whatever that
+comes to, with the type stepped up throughout: bio from 16.5px to 20px, names
+to 46px, the section lede to 22px, tags to 14.5px, portraits to 165px. At
+1880x1010 that lands at 911px, just under a screen, because the content
+genuinely wants that much. At 1440x700 it comes to 862px, which is more than one
+screen. That is the honest height of the copy at a readable size, and reducing
+it would mean going back to small type.
+
+The short viewport queries now only step down the growth plate, which is still
+pinned to one screen. Leadership was removed from them, since it is free to be
+its own height.
+
 ## Checks run
 
 - Zero em dashes. No banned phrases. No placeholders. No numbered list markers.
