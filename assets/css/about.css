@@ -1,0 +1,204 @@
+/* ==========================================================================
+   About page
+   Same system as the home page: same tokens, type, buttons, nav and footer.
+   Every section structure here is new. Nothing is carried over from index.
+   ========================================================================== */
+
+/* ==========================================================================
+   Hero. The home page leads with a full bleed photograph and floats a plate
+   on it. This one is type led: the picture is a band across the foot, and
+   the eye travels down rather than across.
+   ========================================================================== */
+.ab-hero{margin-top:var(--nav-h);min-height:calc(100svh - var(--nav-h));
+  display:grid;grid-template-rows:1fr auto;background:var(--stone)}
+.ab-hero__copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,40%);
+  gap:clamp(24px,4vw,72px);align-content:center;align-items:end;
+  padding-block:clamp(28px,4.4vh,60px)}
+.ab-hero__eyebrow{color:var(--forest);opacity:.78;margin-bottom:clamp(14px,1.9vh,24px)}
+.ab-hero h1{color:var(--forest);font-size:clamp(34px,4.55vw,70px)}
+.ab-hero h1 .mask>span{white-space:nowrap}
+.ab-hero h1 em{font-style:italic;font-weight:300}
+.ab-hero__side{color:var(--ink-soft);max-width:38ch;padding-bottom:.5em}
+.ab-hero__side .rule{width:56px;margin-bottom:clamp(16px,2vh,24px);opacity:.4}
+
+.ab-hero__band{position:relative;overflow:hidden;
+  height:clamp(180px,30svh,320px);background:var(--forest-deep)}
+.ab-hero__band img{width:100%;height:100%;object-fit:cover;object-position:center 62%;
+  transform:scale(1.08);transition:transform 2.2s var(--ease-out)}
+.loaded .ab-hero__band img{transform:scale(1)}
+/* set on the shadowed right of the band, where the photograph is genuinely
+   dark, rather than laid over a scrim. measured, not guessed. */
+.ab-hero__line{position:absolute;right:var(--gut);bottom:clamp(20px,3.4vh,38px);
+  color:var(--white);font-family:var(--serif);font-weight:400;letter-spacing:-.02em;
+  font-size:clamp(20px,2.4vw,34px);line-height:1.12;max-width:15ch;text-align:right}
+
+/* ==========================================================================
+   Opening. One statement across the full measure, then three plain facts.
+   ========================================================================== */
+.ab-intro{background:var(--stone-light);padding-block:var(--rhythm)}
+.ab-intro__stmt{font-family:var(--serif);font-weight:400;line-height:1.16;
+  letter-spacing:-.022em;color:var(--forest);
+  font-size:clamp(25px,3.15vw,48px);max-width:24ch;
+  padding-bottom:clamp(40px,5vw,74px)}
+.ab-intro__stmt em{font-style:italic;font-weight:300}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,56px)}
+.fact{border-top:1px solid rgba(23,61,46,.2);padding-top:clamp(18px,2vw,26px)}
+.fact .label{color:var(--forest);opacity:.78;margin-bottom:clamp(10px,1.2vw,16px)}
+.fact p{color:var(--ink-soft);font-size:clamp(14.5px,1.05vw,17px);line-height:1.6}
+
+/* ==========================================================================
+   Expertise, set as a ledger. Full width rows, no icons, no cards.
+   ========================================================================== */
+.ab-index{background:var(--stone);padding-block:var(--rhythm)}
+.ab-index__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,38%);
+  gap:clamp(20px,3vw,56px);align-items:end;margin-bottom:clamp(36px,4.4vw,64px)}
+.ab-index__head h2{color:var(--forest);max-width:13ch}
+.ab-index__head p{color:var(--ink-soft);max-width:36ch;padding-bottom:.4em}
+
+.ledger{border-top:1px solid rgba(23,61,46,.22)}
+.led{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,44%) auto;
+  gap:clamp(16px,2.6vw,48px);align-items:center;
+  padding:clamp(20px,2.4vw,34px) clamp(14px,1.6vw,26px);
+  border-bottom:1px solid rgba(23,61,46,.22);
+  transition:background .45s var(--ease),padding-left .45s var(--ease-out)}
+.led:hover{background:var(--white);padding-left:clamp(22px,2.6vw,42px)}
+.led h3{font-family:var(--serif);font-weight:400;letter-spacing:-.022em;
+  color:var(--forest);font-size:clamp(21px,2.5vw,38px);line-height:1.08}
+.led p{color:var(--ink-soft);font-size:clamp(14px,1vw,16.5px);line-height:1.55}
+.led__mark{width:26px;height:26px;flex:0 0 auto;opacity:0;transform:translateX(-8px);
+  transition:opacity .45s var(--ease),transform .45s var(--ease-out)}
+.led__mark svg{width:100%;height:100%;stroke:var(--sage);fill:none;stroke-width:1.4;
+  stroke-linecap:round;stroke-linejoin:round}
+.led:hover .led__mark{opacity:1;transform:none}
+
+/* ==========================================================================
+   Growth. A plate overlapping the picture, a device the home page never uses.
+   ========================================================================== */
+.ab-grow{background:var(--stone-warm);padding-block:var(--rhythm);overflow:hidden}
+.ab-grow__in{display:grid;grid-template-columns:minmax(0,52%) minmax(0,1fr);
+  align-items:center}
+.ab-grow__media{grid-area:1/2/2/3;position:relative;aspect-ratio:4/5;
+  background:var(--forest-deep);overflow:hidden}
+.ab-grow__media img{width:100%;height:100%;object-fit:cover;
+  transform:scale(1.07);transition:transform 1.4s var(--ease-out)}
+.ab-grow.in .ab-grow__media img{transform:scale(1)}
+.ab-grow__plate{grid-area:1/1/2/2;position:relative;z-index:2;
+  background:var(--white);padding:clamp(32px,4vw,64px);
+  margin-right:clamp(-120px,-7vw,-40px);
+  box-shadow:0 44px 100px -60px rgba(23,61,46,.5)}
+.ab-grow__plate .label{color:var(--forest);opacity:.78;margin-bottom:clamp(16px,1.8vw,24px)}
+.ab-grow__plate h2{color:var(--forest);margin-bottom:clamp(18px,2vw,28px)}
+.ab-grow__plate p{color:var(--ink-soft);margin-bottom:1.1em}
+.ab-grow__plate p:last-child{margin-bottom:0}
+
+/* ==========================================================================
+   Leadership. Real portraits from the client's own site. Second row mirrored
+   and on a different ground so the pair does not read as a repeated card.
+   ========================================================================== */
+.ab-people{background:var(--stone)}
+.ab-people__head{padding-block:var(--rhythm) clamp(30px,3.6vw,56px)}
+.ab-people__head h2{color:var(--forest);max-width:14ch;margin-bottom:.45em}
+.ab-people__head p{color:var(--ink-soft);max-width:52ch}
+
+.who{padding-block:clamp(38px,4.6vw,72px)}
+.who--light{background:var(--white)}
+.who__in{display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:clamp(24px,4vw,72px);align-items:start}
+.who--alt .who__in{grid-template-columns:minmax(0,1fr) auto}
+.who--alt .who__face{grid-column:2;grid-row:1}
+.who--alt .who__body{grid-column:1;grid-row:1}
+.who__face{width:clamp(120px,15vw,210px);flex:0 0 auto}
+.who__face img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;
+  filter:grayscale(.12)}
+.who__name{color:var(--forest);font-size:clamp(28px,3.4vw,54px);margin-bottom:.22em}
+.who__role{color:var(--forest);opacity:.72;margin-bottom:clamp(18px,2vw,28px)}
+.who__bio{color:var(--ink-soft);max-width:62ch;margin-bottom:clamp(20px,2.2vw,30px)}
+.who__tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
+  gap:8px clamp(10px,1.2vw,16px)}
+.who__tags li{font-size:clamp(12px,.86vw,13.5px);letter-spacing:.09em;
+  text-transform:uppercase;color:var(--forest);
+  border:1px solid rgba(23,61,46,.25);padding:.62em 1.05em}
+.who--light .who__tags li{border-color:rgba(23,61,46,.3)}
+
+/* ==========================================================================
+   Statement. The home page's dark band runs photograph left, white type right.
+   This is its mirror: the drawing sits right as a full height panel, the type
+   sits left in Forest on Stone. No type ever crosses the branches.
+   ========================================================================== */
+.ab-quote{background:var(--stone);display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,44%);align-items:stretch;
+  min-height:min(78svh,680px)}
+.ab-quote__media{position:relative;overflow:hidden;background:var(--stone-light)}
+.ab-quote__media img{width:100%;height:100%;object-fit:cover;object-position:28% center}
+.ab-quote__in{display:flex;align-items:center;
+  padding-block:clamp(56px,8vw,110px);
+  padding-left:max(var(--gut),calc(50vw - var(--maxw) / 2 + var(--gut)));
+  padding-right:clamp(30px,5vw,90px)}
+.ab-quote blockquote{margin:0;max-width:min(100%,620px)}
+.ab-quote__mark{display:block;width:46px;height:1px;background:var(--forest);
+  opacity:.45;margin-bottom:clamp(22px,2.6vw,34px)}
+.ab-quote p{font-family:var(--serif);font-weight:400;letter-spacing:-.022em;
+  line-height:1.2;color:var(--forest);font-size:clamp(21px,2.45vw,37px)}
+.ab-quote cite{display:block;margin-top:clamp(22px,2.6vw,34px);font-style:normal;
+  font-family:var(--sans);font-size:clamp(10.5px,.78vw,12px);font-weight:500;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--forest);opacity:.78}
+
+/* ==========================================================================
+   Close. Type only, no photograph, so it does not echo the home page's.
+   ========================================================================== */
+.ab-close{background:var(--forest);color:var(--stone);padding-block:var(--rhythm)}
+.ab-close__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,38%);
+  gap:clamp(30px,5vw,90px);align-items:end}
+.ab-close h2{color:var(--white);max-width:12ch;margin-bottom:clamp(22px,2.4vw,32px)}
+.ab-close__lede{color:var(--moss);max-width:34ch;margin-bottom:clamp(28px,3vw,40px)}
+.ab-close__meta{display:grid;gap:clamp(12px,1.4vw,18px)}
+.ab-close__meta div{border-top:1px solid rgba(237,235,229,.24);padding-top:clamp(12px,1.4vw,18px)}
+.ab-close__meta .label{color:var(--moss);margin-bottom:.5em}
+.ab-close__meta a,.ab-close__meta span{color:var(--stone);font-size:clamp(15px,1.1vw,17px)}
+.ab-close__meta a:hover{color:var(--white)}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width:1180px){
+  .ab-hero__copy{grid-template-columns:1fr;align-items:start;gap:clamp(20px,3vw,32px)}
+  .ab-hero__side{padding-bottom:0;max-width:46ch}
+  .ab-quote{grid-template-columns:minmax(0,1fr) minmax(0,40%)}
+  .ab-quote blockquote{max-width:min(100%,540px)}
+  .ab-close__in{grid-template-columns:1fr;gap:clamp(30px,4vw,44px)}
+}
+
+@media (max-width:980px){
+  .led{grid-template-columns:minmax(0,1fr) minmax(0,46%);gap:clamp(14px,2vw,28px)}
+  .led__mark{display:none}
+  .ab-index__head{grid-template-columns:1fr}
+  .ab-index__head p{padding-bottom:0}
+  .ab-grow__in{grid-template-columns:1fr;gap:0}
+  .ab-grow__media{grid-area:1/1/2/2;aspect-ratio:16/11}
+  .ab-grow__plate{grid-area:2/1/3/2;margin-right:0;
+    margin-inline:clamp(14px,4vw,48px);margin-top:clamp(-72px,-8vw,-36px)}
+  .facts{grid-template-columns:1fr;gap:0}
+  .fact{padding-block:clamp(18px,2.6vw,24px)}
+  .fact:last-child{border-bottom:1px solid rgba(23,61,46,.2)}
+}
+
+@media (max-width:640px){
+  .ab-hero__band{height:clamp(160px,26svh,230px)}
+  .ab-hero__line{font-size:clamp(17px,4.6vw,22px);max-width:12ch}
+  .led{grid-template-columns:1fr;gap:6px;padding-inline:0}
+  .led:hover{padding-left:0}
+  .who__in,.who--alt .who__in{grid-template-columns:1fr;gap:clamp(18px,4vw,26px)}
+  .who--alt .who__face,.who--alt .who__body{grid-column:1}
+  .who--alt .who__face{grid-row:1}
+  .who--alt .who__body{grid-row:2}
+  .who__face{width:clamp(108px,34vw,150px)}
+  .ab-quote{grid-template-columns:1fr;min-height:0}
+  .ab-quote__media{order:-1;height:min(34svh,260px)}
+  .ab-quote__media img{object-position:center 40%}
+  .ab-quote__in{padding:clamp(30px,7vw,46px) var(--gut) clamp(38px,8vw,56px)}
+  .ab-quote blockquote{max-width:100%}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .ab-hero__band img,.ab-grow__media img{transform:none}
+}

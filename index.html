@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=12">
+<link rel="stylesheet" href="assets/css/site.css?v=15">
 </head>
 <body>
 
@@ -36,7 +36,7 @@
 
 <header class="nav" id="nav">
   <div class="wrap nav__in">
-    <a class="logo" href="#top" aria-label="Green Spring Marketing, home">
+    <a class="logo" href="index.html" aria-label="Green Spring Marketing, home">
       <svg class="logo__leaf" viewBox="0 0 24 26" fill="none" aria-hidden="true">
         <path d="M20.3 3.4C19 12 13.6 18.2 6.8 20.1 5.1 13.3 8.7 6.4 15.4 3.6c1.7-.7 3.5-.9 4.9-.2z" fill="#6B8F71"/>
         <path d="M20.3 3.4C14.6 8.2 10 13.9 6.8 20.1M6.8 20.1 5.7 23.4" stroke="#173D2E" stroke-width="1.1" stroke-linecap="round"/>
@@ -47,10 +47,10 @@
       </span>
     </a>
     <nav class="nav__links" aria-label="Primary">
-      <a class="nav__link" href="#capabilities">Capabilities</a>
-      <a class="nav__link" href="#approach">Approach</a>
-      <a class="nav__link" href="#method">How we work</a>
-      <a class="nav__link" href="#team">Team</a>
+      <a class="nav__link" href="about.html">About</a>
+      <a class="nav__link" href="index.html#capabilities">Capabilities</a>
+      <a class="nav__link" href="index.html#services">Services</a>
+      <a class="nav__link" href="index.html#method">How we work</a>
       <a class="nav__tel" href="tel:+15025447930">502-544-7930</a>
       <a class="btn btn--solid nav__cta" href="#contact">Start the conversation</a>
     </nav>
@@ -61,10 +61,28 @@
 </header>
 
 <nav class="menu" id="menu" aria-label="Mobile">
-  <a href="#capabilities" style="--i:0">Capabilities</a>
-  <a href="#approach" style="--i:1">Approach</a>
-  <a href="#method" style="--i:2">How we work</a>
-  <a href="#team" style="--i:3">Team</a>
+  <a href="about.html" style="--i:0">About</a>
+  <a href="index.html#capabilities" style="--i:1">Capabilities</a>
+  <a href="index.html#services" style="--i:2">Services</a>
+  <a href="index.html#method" style="--i:3">How we work</a>
+  <a href="#contact" style="--i:4">Contact</a>
+  <div class="menu__foot">
+    <a href="tel:+15025447930">502-544-7930</a>
+    <a href="mailto:info@greenspringmarketing.com">info@greenspringmarketing.com</a>
+    <span>12414 Covered Bridge Road, Sellersburg, IN 47172</span>
+  </div>
+</nav>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="menu" id="menu" aria-label="Mobile">
+  <a href="about.html" style="--i:0">About</a>
+  <a href="#capabilities" style="--i:1">Capabilities</a>
+  <a href="#services" style="--i:2">Services</a>
+  <a href="#method" style="--i:3">How we work</a>
   <a href="#contact" style="--i:4">Contact</a>
   <div class="menu__foot">
     <a href="tel:+15025447930">502-544-7930</a>
@@ -325,6 +343,7 @@
     <div class="lead__head">
       <h2 class="display h-lg rv">The people on your account.</h2>
       <p class="lede rv" style="--d:110ms">Our team has worked for nationally recognised internet marketing firms and brings experience across both B2B and B2C. Whatever the size of your company, we start from your goals and your return.</p>
+      <p class="rv" style="--d:190ms"><a class="btn" href="about.html">More about the team <svg class="arw" width="16" height="16" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
     </div>
 
     <div class="person rv">
@@ -379,7 +398,7 @@
   <div class="wrap">
     <div class="foot__top">
       <div>
-        <span class="logo">
+        <a class="logo" href="index.html" aria-label="Green Spring Marketing, home">
           <svg class="logo__leaf" viewBox="0 0 24 26" fill="none" aria-hidden="true">
             <path d="M20.3 3.4C19 12 13.6 18.2 6.8 20.1 5.1 13.3 8.7 6.4 15.4 3.6c1.7-.7 3.5-.9 4.9-.2z" fill="#6B8F71"/>
             <path d="M20.3 3.4C14.6 8.2 10 13.9 6.8 20.1M6.8 20.1 5.7 23.4" stroke="#EDEBE5" stroke-width="1.1" stroke-linecap="round"/>
@@ -388,30 +407,31 @@
             <span class="logo__name">GREEN SPRING</span>
             <span class="logo__sub">MARKETING</span>
           </span>
-        </span>
+        </a>
         <p class="foot__blurb">Digital marketing scaled to your business, with strategic advice that turns marketing spend into new clients.</p>
       </div>
       <div>
         <h4>Capabilities</h4>
         <ul>
-          <li><a href="#services">Branding and Strategy</a></li>
-          <li><a href="#services">Website Development</a></li>
-          <li><a href="#services">Search Engine Optimisation</a></li>
-          <li><a href="#services">Online Advertising</a></li>
+          <li><a href="index.html#services">Branding and Strategy</a></li>
+          <li><a href="index.html#services">Website Development</a></li>
+          <li><a href="index.html#services">Search Engine Optimisation</a></li>
+          <li><a href="index.html#services">Online Advertising</a></li>
         </ul>
       </div>
       <div>
         <h4>More</h4>
         <ul>
-          <li><a href="#services">Social Media Marketing</a></li>
-          <li><a href="#services">Content Marketing</a></li>
-          <li><a href="#services">Email Marketing</a></li>
-          <li><a href="#services">Print Marketing</a></li>
+          <li><a href="index.html#services">Social Media Marketing</a></li>
+          <li><a href="index.html#services">Content Marketing</a></li>
+          <li><a href="index.html#services">Email Marketing</a></li>
+          <li><a href="index.html#services">Print Marketing</a></li>
         </ul>
       </div>
       <div>
         <h4>Contact</h4>
         <ul>
+          <li><a href="about.html">About the team</a></li>
           <li><a href="tel:+15025447930">502-544-7930</a></li>
           <li><a href="mailto:info@greenspringmarketing.com">info@greenspringmarketing.com</a></li>
           <li>12414 Covered Bridge Road<br>Sellersburg, IN 47172</li>
@@ -425,6 +445,6 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=12" defer></script>
+<script src="assets/js/site.js?v=14" defer></script>
 </body>
 </html>

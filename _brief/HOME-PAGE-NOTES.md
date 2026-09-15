@@ -115,6 +115,9 @@ takes its own ground and joins the plate as one block.
   or keep building static and port at the end.
 - Contact goes to `mailto:` for now. If they want a form on the home page, it
   needs the same fields as the live Quick Contact Form.
+- Nav and footer are now shared byte for byte with the About page. The home nav
+  gained About and Services and lost Approach and Team, so one nav serves both.
+  See `_brief/ABOUT-PAGE-NOTES.md`.
 
 ## Checks run
 
@@ -123,7 +126,10 @@ takes its own ground and joins the plate as one block.
   natural size; each is cropped to its section and graded to match the others.
 - Contrast measured, not eyeballed. Every body and label pair clears WCAG AA.
   Sage is 3.04:1 on Stone, so it is used only for the logotype and icon strokes,
-  never for text.
+  never for text. Corrected 15 September: the labels set at reduced opacity were
+  measured on their solid colour, not blended. They came to 3.4 to 3.7:1, which
+  is short for 10.5 to 12px type. Every Forest label is now at .78 opacity,
+  5.17:1 to 6.15:1 depending on the ground.
 - 390, 768 and desktop all checked in the browser. No horizontal overflow at any
   width, menu open or closed.
 - Console is clean. Motion is fully disabled under `prefers-reduced-motion`.

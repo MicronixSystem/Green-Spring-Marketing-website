@@ -124,6 +124,24 @@
     });
   }
 
+  /* ---- shared nav and footer ------------------------------------------
+     The nav and footer markup is byte identical on every page, so links are
+     written page-qualified (index.html#services). Here they are collapsed to
+     a plain hash when they already point at the current page, which keeps the
+     smooth scroll, and the current page is marked for the reader. */
+  (function () {
+    var here = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav a[href], .menu a[href], .foot a[href]').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (!href || href.charAt(0) === '#' || /^(https?:|mailto:|tel:)/.test(href)) return;
+      var parts = href.split('#');
+      var page = parts[0];
+      if (page !== here) return;
+      a.setAttribute('href', parts[1] ? '#' + parts[1] : '#top');
+      if (!parts[1]) a.setAttribute('aria-current', 'page');
+    });
+  })();
+
   /* ---- current section in the nav ------------------------------------- */
   var sections = ['capabilities', 'approach', 'method', 'team']
     .map(function (id) { return document.getElementById(id); })
