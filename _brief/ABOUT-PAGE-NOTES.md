@@ -69,16 +69,17 @@ The live About page carries real photographs of both leaders, so the home page's
 "no portraits" problem is solved with the client's own assets rather than by
 inventing anything.
 
-They are weak, and you should ask for better ones:
+**Chandradip Ghosh** was replaced on 15 September with a proper headshot Rupam
+supplied: a conference photograph, already circle cropped on white. It is
+cropped to the circle, the outside made transparent so no white can fringe the
+edge, and put through the same grade as Linda's.
 
-- **Linda Long** is only 397 x 398 px. That is enough at the size used here and
-  nowhere near enough for anything larger.
-- **Chandradip Ghosh** is a full length shot in different light, from 2021, with
-  a black border baked into the file.
+**Linda Long** is still the 397 x 398 px file from the live site. It holds at
+the size used here but it is visibly softer than Chandradip's now that his is
+sharp. Worth asking for a better one.
 
-Both are cropped to the face, desaturated toward each other and held small so
-the mismatch does not dominate. It works, but two proper headshots taken the
-same way would lift the page considerably.
+Both portraits are circular, which suits the asset Rupam supplied and reads as
+a matched pair.
 
 ## Shared nav and footer
 

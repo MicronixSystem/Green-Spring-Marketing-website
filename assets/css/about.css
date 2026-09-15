@@ -152,9 +152,9 @@
 
 .who__top{display:flex;align-items:center;gap:clamp(18px,2vw,30px)}
 .who__face{flex:0 0 auto;width:clamp(104px,10.5vw,165px);overflow:hidden;
-  background:var(--stone-warm)}
+  border-radius:50%}
 .who__face img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;
-  object-position:center center;filter:grayscale(.14)}
+  object-position:center center;filter:grayscale(.1)}
 .who__name{color:var(--forest);font-size:clamp(27px,2.85vw,46px);
   line-height:1.02;margin-bottom:.3em}
 .who__role{color:var(--forest);opacity:.78}
