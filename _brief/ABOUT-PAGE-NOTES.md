@@ -137,6 +137,34 @@ The opening and closing bands still read low on the coverage measure. Both are
 type on a flat ground with no photograph, so the number is always going to be
 low there; what matters is that neither has a hole in it any more.
 
+## Second pass on height and alignment
+
+Rupam asked for three more things: fix the empty top of the hero, and cap both
+"How an engagement starts" and the leadership section at one screen.
+
+**Hero.** The eyebrow was being pushed to the top of the column by a
+`space-between`, orphaning it above a large hole. It now sits with the headline,
+and the two counted figures moved into the foot of the same column, so a tall
+window fills with content instead of air. Both columns bottom align.
+
+**How an engagement starts** is now `100svh` minus the nav. It was overrunning
+that by 248px because the photograph's `height:100%` fell back to its own
+intrinsic height inside an auto height grid item; the image is now absolutely
+positioned so it fills without contributing height. Inside the white plate the
+three stages divide the lower part into equal bands, so the plate has no idle
+white in it.
+
+**Leadership** was redesigned. It used to be two stacked rows with the portrait
+blown up into a tall bled panel, which upscaled Linda's 397px file badly. It is
+now a single screen: both people side by side, split by one hairline, each with
+a small square portrait beside the name, then the bio, then the tags, with the
+three blocks spread over the column height.
+
+Because these sections hold real copy, a short window cannot always take them at
+full size. Two height queries step the type and spacing down below 900px and
+again below 740px. Verified at 1440x700, 1600x900 and 1880x1010: all three
+sections land exactly on the budget at every one.
+
 ## Checks run
 
 - Zero em dashes. No banned phrases. No placeholders. No numbered list markers.
