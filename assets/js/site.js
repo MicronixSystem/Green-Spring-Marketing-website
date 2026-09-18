@@ -19,7 +19,7 @@
   }
 
   /* ---- reveal on enter ----------------------------------------------- */
-  var revealables = document.querySelectorAll('.rv, .map, .cap, .found__in, .rule');
+  var revealables = document.querySelectorAll('.rv, .cap, .flow, .rule');
   if (!('IntersectionObserver' in window) || reduced) {
     revealables.forEach(function (el) { el.classList.add('in'); });
   } else {
@@ -34,8 +34,6 @@
   /* ---- nav condense + scroll progress -------------------------------- */
   var nav = document.getElementById('nav');
   var progress = document.getElementById('progress');
-  var fill = document.getElementById('fill');
-  var track = document.getElementById('track');
   var stmtMedia = document.getElementById('stmtMedia');
   var ticking = false;
 
@@ -46,14 +44,6 @@
     if (nav) nav.classList.toggle('stuck', y > 24);
     if (progress && docH > 0) {
       progress.style.transform = 'scaleX(' + Math.min(1, y / docH) + ')';
-    }
-
-    /* the rule beside the method list fills as you read down it */
-    if (fill && track) {
-      var r = track.getBoundingClientRect();
-      var vh = window.innerHeight;
-      var p = (vh * 0.62 - r.top) / r.height;
-      fill.style.height = Math.max(0, Math.min(1, p)) * 100 + '%';
     }
 
     /* a little counter-drift on the leaf so the band feels alive */
