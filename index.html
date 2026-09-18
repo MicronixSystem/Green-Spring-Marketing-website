@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=27">
+<link rel="stylesheet" href="assets/css/site.css?v=31">
 <noscript><style>
   .rv{opacity:1;transform:none}
   .mask>span{transform:none}
@@ -60,7 +60,6 @@
   <div class="menu__foot">
     <a href="tel:+15025447930">502-544-7930</a>
     <a href="mailto:info@greenspringmarketing.com">info@greenspringmarketing.com</a>
-    <span>12414 Covered Bridge Road, Sellersburg, IN 47172</span>
   </div>
 </nav>
 
@@ -102,19 +101,27 @@
 
 <!-- ============================== foundation ============================== -->
 <section class="found" id="foundation">
-  <div class="wrap">
+  <div class="wrap found__top">
     <p class="found__bridge rv">Every enduring brand begins with something worth growing.</p>
   </div>
-  <div class="wrap found__in">
-    <div class="found__lead">
+  <div class="found__split">
+    <div class="found__text">
       <p class="label found__eyebrow rv">A firmer foundation</p>
       <h2 class="display found__h2 rv" style="--d:80ms">Your brand is more than a logo.</h2>
-    </div>
-    <div class="found__body">
       <p class="rv" style="--d:160ms">Your brand shapes how people see you, what they remember about you, and ultimately whether they choose you.</p>
       <p class="rv" style="--d:220ms">We uncover what makes your organization distinctive and translate it into a compelling brand, digital experience and strategic marketing designed to reach the people who matter most.</p>
       <p class="found__callout rv" style="--d:280ms">Know what sets you apart. Build from there.</p>
     </div>
+    <figure class="found__media rv" style="--d:120ms">
+      <picture>
+        <source media="(max-width:980px)" srcset="assets/img/brand-world-w-800.webp 800w, assets/img/brand-world-w-1360.webp 1360w" sizes="100vw">
+        <img src="assets/img/brand-world-1024.webp"
+             srcset="assets/img/brand-world-720.webp 720w, assets/img/brand-world-1024.webp 1024w"
+             sizes="(max-width:980px) 100vw, 50vw"
+             width="1024" height="1024" loading="lazy"
+             alt="A brand identity system laid out on pale paper: a linen-bound brand book, a tablet and a phone showing the website, a Green Spring Marketing business card and a sprig of leaves resting at the edge of the frame.">
+      </picture>
+    </figure>
   </div>
 </section>
 
@@ -268,7 +275,6 @@
       <div class="close__meta">
         <a href="tel:+15025447930">502-544-7930</a>
         <a href="mailto:info@greenspringmarketing.com">info@greenspringmarketing.com</a>
-        <span>12414 Covered Bridge Road, Sellersburg, IN 47172</span>
       </div>
     </div>
   </div>
@@ -290,7 +296,10 @@
             <span class="logo__sub">MARKETING</span>
           </span>
         </a>
-        <p class="foot__blurb">Digital marketing scaled to your business, with strategic advice that turns marketing spend into new clients.</p>
+        <div class="foot__brand">
+          <a href="tel:+15025447930">502-544-7930</a>
+          <a href="mailto:info@greenspringmarketing.com">info@greenspringmarketing.com</a>
+        </div>
       </div>
       <div>
         <h4>Capabilities</h4>
@@ -311,12 +320,12 @@
         </ul>
       </div>
       <div>
-        <h4>Contact</h4>
+        <h4>Company</h4>
         <ul>
           <li><a href="about.html">About the team</a></li>
-          <li><a href="tel:+15025447930">502-544-7930</a></li>
-          <li><a href="mailto:info@greenspringmarketing.com">info@greenspringmarketing.com</a></li>
-          <li>12414 Covered Bridge Road<br>Sellersburg, IN 47172</li>
+          <li><a href="index.html#capabilities">What we do</a></li>
+          <li><a href="index.html#approach">How we think</a></li>
+          <li><a href="index.html#contact">Start the conversation</a></li>
         </ul>
       </div>
     </div>
@@ -327,6 +336,6 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=19" defer></script>
+<script src="assets/js/site.js?v=20" defer></script>
 </body>
 </html>

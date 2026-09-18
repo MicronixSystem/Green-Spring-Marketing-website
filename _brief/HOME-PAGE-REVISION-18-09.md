@@ -48,6 +48,38 @@ four frames:
 It was regraded rather than replaced, so Buddy's original selection is kept. It
 now sits inside the range of the other three.
 
+## The hero plate, after Rupam flagged it
+
+He was right that the copy looked stranded. Measured: the plate's inner width is
+547px, and the two paragraphs were capped at `32ch` and `40ch`, which rendered
+at 380px and 359px. Every paragraph line therefore stopped 170 to 190px short of
+the plate's right padding, leaving a wedge of bare stone down the right of the
+block. The headline was the only thing reaching the edge.
+
+The caps could not simply be dropped: at the current sizes that gave the lede a
+six character last line and left the second paragraph with a one word orphan.
+The plate is sized to the headline, so the paragraphs had to grow into the same
+measure. They are now `clamp(20px,1.91vw,29px)` and `clamp(16px,1.38vw,21px)`,
+with `text-wrap:balance` on the lede and `pretty` below it.
+
+The short window queries had the same fault in reverse: the headline steps down
+to 60px and then 50px, but the plate stayed 650px wide, so at a 660px window the
+headline itself was stranded 203px short. The plate now steps down with it, to
+580px and 472px.
+
+Worst line gap in the plate's paragraphs, measured:
+
+| Viewport | Before | After |
+|---|---|---|
+| 1920x1080 | 396 | 110 |
+| 1520x950 | 413 | 119 |
+| 1520x820 | 438 | 124 |
+| 1520x660 | 465 | 94 |
+| 768x1024 | 442 | 197 |
+
+The eyebrow, the italic middle line of the headline and the button are still
+short. Those are intrinsically short elements, and that rag is the design.
+
 ## Judgment calls she delegated
 
 **"Every enduring brand begins with something worth growing."** Her document
@@ -95,6 +127,131 @@ Switched to American spelling to match her copy: recognizable, optimization.
 - 390, 768 and desktop checked. No horizontal overflow. Console clean.
 - Nav and footer still byte identical with about.html. No duplicate ids, no
   dead anchors on either page.
+
+## Not committed
+
+Held out of git on Rupam's instruction.
+
+---
+
+# Second round, same day
+
+Built to Linda's refinement note of 18 September
+(`email/18-09-2026/home page changes/new/`). Her framing: not a redesign, "the
+next layer of refinement".
+
+Preview with `python serve.py`, then `index.html?v=31`.
+
+## What she asked for, and what was done
+
+| Her instruction | Done |
+|---|---|
+| Give "Your brand is more than a logo" a real visual | Built. Left keeps the headline, the photograph takes the right and bleeds off the page edge |
+| Tighten the space around the bridge line, Our strategy, One connected system | Done. Those sections came down 237px between them |
+| Check rendered heights, not only padding: something may be held open | Found it. `.stmt` carried `min-height:min(92svh,860px)` |
+| Balance nature imagery with the actual work | The new photograph is the first image on the page showing what GSM makes |
+| Descenders cut off in the hero headline | Fixed |
+| Remove the street address from the CTA area and the footer | Removed everywhere it appeared |
+| Remove the old footer positioning sentence | Removed. Phone and email take that column |
+| Keep hero, connected system, leaf section, final CTA | Untouched |
+
+## The photograph
+
+Rupam generated it from a prompt written to produce **no legible lettering
+anywhere**, because small type is where these renders give themselves away.
+Linda's own reference shows it: her brand book reads "CH&TITY / CONTRJIVITYY /
+GROHECTION".
+
+The real wordmark is composited onto the business card afterwards from
+`assets/from-client/09 2026 New GSM Logo.png`, so the only text in the frame is
+genuinely the client's and genuinely sharp. The render's printed rules are
+removed from the card first, keeping its own lighting and paper grain.
+
+Rebuild with `python _build/brand_world.py`. Source kept unedited at
+`assets/from-client/brand-world-source.png`.
+
+Graded to sit with the four pillar photographs: foliage saturation 0.205 to
+0.270, against a family range of 0.206 to 0.708.
+
+## Heights before and after, measured at 1520x900
+
+| Section | Before | After | |
+|---|---|---|---|
+| Hero | 808 | 808 | unchanged |
+| A firmer foundation | 672 | 975 | gained the photograph |
+| Our strategy gives you the advantage | 924 | 880 | −44 |
+| One connected system | 753 | 683 | −70 |
+| Better Opportunities. Better Business. | 828 | 738 | −90 |
+| Ready to stand apart? | 833 | 800 | −33 |
+| **Page** | **5295** | **5337** | **+42** |
+
+The four sections she named lost 237px. The page is 42px longer overall,
+because the space she disliked was replaced with a picture rather than simply
+closed up.
+
+She was right about a minimum height. `.stmt` was held open 93px past its
+content at a 900px window. It is now `min(82svh,740px)` and the content drives
+it, with 3px to spare.
+
+## The hero descenders
+
+`.mask` carries `overflow:hidden` for the line-by-line reveal, and the line box
+is `.98em`, tighter than the glyphs. The g and the p fell outside it and were
+clipped. The clip box now extends `.17em` lower with a matching negative margin,
+so nothing moves, and the slide starts at 128% rather than 105% so the next line
+still cannot peek through the taller box.
+
+## The hero plate, after Rupam flagged it
+
+He was right that the copy looked stranded. Measured: the plate's inner width is
+547px, and the two paragraphs were capped at `32ch` and `40ch`, which rendered
+at 380px and 359px. Every paragraph line therefore stopped 170 to 190px short of
+the plate's right padding, leaving a wedge of bare stone down the right of the
+block. The headline was the only thing reaching the edge.
+
+The caps could not simply be dropped: at the current sizes that gave the lede a
+six character last line and left the second paragraph with a one word orphan.
+The plate is sized to the headline, so the paragraphs had to grow into the same
+measure. They are now `clamp(20px,1.91vw,29px)` and `clamp(16px,1.38vw,21px)`,
+with `text-wrap:balance` on the lede and `pretty` below it.
+
+The short window queries had the same fault in reverse: the headline steps down
+to 60px and then 50px, but the plate stayed 650px wide, so at a 660px window the
+headline itself was stranded 203px short. The plate now steps down with it, to
+580px and 472px.
+
+Worst line gap in the plate's paragraphs, measured:
+
+| Viewport | Before | After |
+|---|---|---|
+| 1920x1080 | 396 | 110 |
+| 1520x950 | 413 | 119 |
+| 1520x820 | 438 | 124 |
+| 1520x660 | 465 | 94 |
+| 768x1024 | 442 | 197 |
+
+The eyebrow, the italic middle line of the headline and the button are still
+short. Those are intrinsically short elements, and that rag is the design.
+
+## Judgment calls
+
+**The bridge line stays above the split.** That leaves bare stone to the right
+of it. Measured, the largest void in the section is 11%, which is inside
+tolerance, and it is breathing room around a pull quote rather than a hole in a
+content block. Folding it into the left column would close the gap but force the
+photograph into a 0.82 frame, which crops the foliage out.
+
+**"Sellersburg, Indiana" is left in the footer's bottom bar.** It is a city, not
+a street address, and removing a local firm's location entirely costs them in
+search. One line to delete if she wants it gone.
+
+## To raise with her
+
+- The render is 1536x1024. It carries a standard 125% display at full density,
+  but it is soft on a 2x screen. A larger render of the same prompt would fix it
+  and nothing else would need to change.
+- The About page's contact band lost its Office row with the address. Two rows
+  left, type sized up so they are not stretched over the old three.
 
 ## Not committed
 

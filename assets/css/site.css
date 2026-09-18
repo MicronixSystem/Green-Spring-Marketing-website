@@ -90,8 +90,8 @@ p{margin:0}
     transition:opacity .95s var(--ease-out),transform .95s var(--ease-out);
     transition-delay:var(--d,0ms)}
 .rv.in{opacity:1;transform:none}
-.mask{display:block;overflow:hidden}
-.mask>span{display:block;transform:translateY(105%);
+.mask{display:block;overflow:hidden;padding-bottom:.17em;margin-bottom:-.17em}
+.mask>span{display:block;transform:translateY(128%);
            transition:transform 1.05s var(--ease-out);transition-delay:var(--d,0ms)}
 .in .mask>span,.mask.in>span{transform:none}
 
@@ -177,9 +177,10 @@ body.menu-open .menu>a{opacity:1;transform:none;transition-delay:calc(var(--i) *
 .hero__h1{color:var(--forest);margin-bottom:clamp(16px,1.6vw,24px);
   font-size:clamp(35px,4.9vw,70px)}
 .hero__h1 em{font-style:italic;font-weight:300}
-.hero__sub{color:var(--ink-soft);margin-bottom:clamp(14px,1.4vw,20px);max-width:32ch}
-.hero__sub2{color:var(--ink-soft);max-width:40ch;
-  font-size:clamp(14.5px,1.02vw,16.5px);line-height:1.6;
+.hero__sub{color:var(--ink-soft);margin-bottom:clamp(14px,1.4vw,20px);
+  font-size:clamp(20px,1.91vw,29px);text-wrap:balance}
+.hero__sub2{color:var(--ink-soft);
+  font-size:clamp(16px,1.38vw,21px);line-height:1.58;text-wrap:pretty;
   margin-bottom:clamp(24px,2.4vw,34px)}
 .hero__cue{position:absolute;left:var(--gut);bottom:clamp(24px,3.4vh,44px);
   display:flex;align-items:flex-end;gap:16px;color:var(--white)}
@@ -196,31 +197,39 @@ body.menu-open .menu>a{opacity:1;transform:none;transition-delay:calc(var(--i) *
    A firmer foundation. Type led, no comparison panels. The section carries
    one idea at large scale and then hands off to the four disciplines.
    ========================================================================== */
-.found{background:var(--stone);padding-block:var(--rhythm)}
+.found{background:var(--stone)}
+.found__top{padding-block:clamp(40px,4.4vw,72px) 0}
 .found__bridge{font-family:var(--serif);font-weight:400;color:var(--forest);
   font-size:clamp(23px,2.8vw,44px);line-height:1.2;letter-spacing:-.024em;
-  padding-bottom:clamp(26px,3vw,44px);margin-bottom:clamp(30px,3.4vw,50px);
+  max-width:24ch;padding-bottom:clamp(22px,2.4vw,34px);
   border-bottom:1px solid rgba(23,61,46,.22)}
-.found__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,46%);
-  gap:clamp(28px,4.5vw,90px);align-items:start}
-.found__lead{min-width:0}
-.found__eyebrow{color:var(--forest);opacity:.78;margin-bottom:clamp(18px,2vw,28px)}
-.found__h2{color:var(--forest);font-size:clamp(36px,5.4vw,84px);line-height:.98;
-  letter-spacing:-.028em;max-width:8.5ch}
-.found__body{display:flex;flex-direction:column;gap:clamp(18px,2vw,26px);
-  padding-top:clamp(6px,1.2vw,18px)}
-.found__body p{color:var(--ink-soft);font-size:clamp(16.5px,1.32vw,21px);line-height:1.6}
-.found__callout{color:var(--forest);font-family:var(--serif);font-weight:400;
-  font-size:clamp(20px,1.95vw,30px);line-height:1.22;letter-spacing:-.02em;
-  margin-top:clamp(10px,1.4vw,20px);padding-top:clamp(20px,2.2vw,30px);
+
+.found__split{display:grid;align-items:stretch;
+  grid-template-columns:minmax(0,1fr) minmax(0,min(50%,880px))}
+.found__text{
+  padding-inline:max(var(--gut),calc((100vw - var(--maxw)) / 2 + var(--gut)))
+                clamp(34px,4.6vw,88px);
+  padding-block:clamp(46px,5.4vw,90px)}
+.found__eyebrow{color:var(--forest);opacity:.78;margin-bottom:clamp(16px,1.8vw,26px)}
+.found__h2{color:var(--forest);font-size:clamp(38px,5vw,80px);line-height:.98;
+  letter-spacing:-.028em;max-width:11ch;margin-bottom:clamp(24px,2.6vw,38px)}
+.found__text p{color:var(--ink-soft);font-size:clamp(17px,1.36vw,22px);line-height:1.6;
+  max-width:44ch}
+.found__text p+p{margin-top:clamp(16px,1.6vw,22px)}
+.found__text .found__callout{color:var(--forest);font-family:var(--serif);font-weight:400;
+  font-size:clamp(21px,2vw,31px);line-height:1.22;letter-spacing:-.02em;max-width:22ch;
+  margin-top:clamp(22px,2.4vw,34px);padding-top:clamp(22px,2.4vw,32px);
   border-top:1px solid rgba(23,61,46,.22)}
+.found__media{position:relative;margin:0;overflow:hidden;background:var(--stone-warm)}
+.found__media img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 46%}
 
 /* ==========================================================================
    Capabilities. Four frames on a staggered baseline, not a card grid.
    ========================================================================== */
-.caps{padding-block:calc(var(--rhythm) * .86);background:var(--stone-warm)}
+.caps{padding-block:calc(var(--rhythm) * .72);background:var(--stone-warm)}
 .caps__head{display:grid;grid-template-columns:1fr auto;align-items:end;
-  gap:24px;margin-bottom:clamp(34px,3.8vw,60px)}
+  gap:24px;margin-bottom:clamp(26px,2.9vw,44px)}
 .caps__head h2{color:var(--forest);max-width:14ch}
 .caps__row{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,1.9vw,32px)}
 .cap{position:relative}
@@ -242,12 +251,12 @@ body.menu-open .menu>a{opacity:1;transform:none;transition-delay:calc(var(--i) *
    Statement. The photograph's own black carries the type. 21:1, no scrim.
    ========================================================================== */
 .stmt{position:relative;background:#000;color:var(--stone);overflow:hidden;
-  min-height:min(92svh,860px);display:flex;align-items:center}
+  min-height:min(82svh,740px);display:flex;align-items:center}
 .stmt__media{position:absolute;inset:-36px 0;width:62%}
 .stmt__media img{width:100%;height:100%;object-fit:cover;object-position:left center;
   will-change:transform}
 .stmt__in{position:relative;width:100%;max-width:var(--maxw);margin-inline:auto;
-  padding:clamp(70px,9vw,130px) var(--gut);
+  padding:clamp(56px,7vw,104px) var(--gut);
   display:grid;grid-template-columns:1fr minmax(0,min(42%,520px))}
 .stmt__copy{grid-column:2}
 .stmt__copy .label{color:var(--moss);margin-bottom:clamp(20px,2vw,30px)}
@@ -263,9 +272,9 @@ body.menu-open .menu>a{opacity:1;transform:none;transition-delay:calc(var(--i) *
    One connected system. The connected line concept Linda liked, reworked
    around the four core disciplines in sequence rather than eight services.
    ========================================================================== */
-.flow{background:var(--stone);padding-block:var(--rhythm)}
+.flow{background:var(--stone);padding-block:calc(var(--rhythm) * .8)}
 .flow__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,40%);
-  gap:clamp(20px,3vw,56px);align-items:end;margin-bottom:clamp(28px,3.2vw,48px)}
+  gap:clamp(20px,3vw,56px);align-items:end;margin-bottom:clamp(24px,2.6vw,38px)}
 .flow__head h2{color:var(--forest);max-width:14ch}
 .flow__head p{color:var(--ink-soft);max-width:38ch;padding-bottom:.4em}
 
@@ -290,7 +299,7 @@ body.menu-open .menu>a{opacity:1;transform:none;transition-delay:calc(var(--i) *
   margin-bottom:clamp(8px,1vw,14px)}
 .flow__step p{color:var(--ink-soft);font-size:clamp(14.5px,1.05vw,17px);line-height:1.55}
 
-.flow__key{margin-top:clamp(34px,4vw,60px);padding-top:clamp(24px,2.6vw,36px);
+.flow__key{margin-top:clamp(28px,3.2vw,46px);padding-top:clamp(22px,2.4vw,32px);
   border-top:1px solid rgba(23,61,46,.22);
   font-family:var(--serif);font-weight:400;color:var(--forest);
   font-size:clamp(21px,2.35vw,36px);line-height:1.24;letter-spacing:-.022em}
@@ -325,7 +334,10 @@ body.menu-open .menu>a{opacity:1;transform:none;transition-delay:calc(var(--i) *
   gap:clamp(30px,4vw,60px);padding-bottom:clamp(40px,4.5vw,64px)}
 .foot .logo__name{color:var(--stone)}
 .foot .logo__sub{color:var(--sage)}
-.foot__blurb{margin-top:22px;max-width:34ch;font-size:14.5px;line-height:1.7}
+.foot__brand{margin-top:clamp(22px,2.4vw,30px);display:grid;gap:9px;
+  font-size:15px;max-width:30ch}
+.foot__brand a{color:var(--stone)}
+.foot__brand a:hover{color:var(--sage)}
 .foot h4{font-family:var(--sans);font-size:11.5px;font-weight:500;letter-spacing:.24em;
   text-transform:uppercase;color:var(--stone);margin-bottom:18px}
 .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:14.5px}
@@ -356,14 +368,16 @@ body.menu-open .menu>a{opacity:1;transform:none;transition-delay:calc(var(--i) *
   .hero{margin-top:var(--nav-h)}
   .hero__grid{grid-template-columns:1fr;align-items:end;padding-bottom:clamp(30px,5vh,56px)}
   .hero__plate{grid-column:1;width:min(100%,560px);padding:clamp(24px,4.4vw,40px)}
-  .hero__sub{font-size:16px;margin-bottom:10px}
-  .hero__sub2{font-size:14px;line-height:1.55;margin-bottom:20px}
+  .hero__sub{font-size:clamp(16px,2.6vw,25px);margin-bottom:10px}
+  .hero__sub2{font-size:clamp(14px,2.05vw,19px);line-height:1.55;margin-bottom:20px}
   .hero__cue{display:none}
   .caps__row{grid-template-columns:repeat(2,1fr);row-gap:clamp(34px,5vw,56px)}
   .cap:nth-child(even){margin-top:0}
   .cap:nth-child(3),.cap:nth-child(4){margin-top:0}
-  .found__in{grid-template-columns:1fr;gap:clamp(22px,3.4vw,34px)}
+  .found__split{grid-template-columns:1fr}
+  .found__text{padding-inline:var(--gut);padding-block:clamp(32px,4.6vw,54px)}
   .found__h2{max-width:16ch}
+  .found__media{aspect-ratio:16/10}
   .flow__head{grid-template-columns:1fr}
   .flow__head p{padding-bottom:0}
   .flow__row{grid-template-columns:repeat(2,1fr);row-gap:clamp(30px,4vw,44px)}
@@ -400,17 +414,20 @@ body.menu-open .menu>a{opacity:1;transform:none;transition-delay:calc(var(--i) *
 /* The hero plate now carries two supporting paragraphs on Linda's direction.
    On a short window it steps down rather than pushing the hero past the fold. */
 @media (min-width:981px) and (max-height:860px){
+  .hero__grid{grid-template-columns:1fr minmax(0,min(49%,580px))}
   .hero__h1{font-size:clamp(32px,4.1vw,60px)}
   .hero__plate{padding:clamp(26px,2.9vw,44px)}
-  .hero__sub{font-size:clamp(16px,1.2vw,19px);margin-bottom:12px}
-  .hero__sub2{font-size:clamp(14px,.95vw,15.5px);line-height:1.55;margin-bottom:22px}
+  .hero__sub{font-size:clamp(18px,1.64vw,25px);margin-bottom:12px}
+  .hero__sub2{font-size:clamp(15px,1.18vw,18px);line-height:1.55;margin-bottom:22px}
   .hero__eyebrow{margin-bottom:16px}
 }
 
 @media (min-width:981px) and (max-height:700px){
+  .hero__grid{grid-template-columns:1fr minmax(0,min(46%,472px))}
   .hero__h1{font-size:clamp(30px,3.5vw,50px)}
   .hero__plate{padding:clamp(22px,2.4vw,34px)}
-  .hero__sub2{font-size:13.5px;margin-bottom:18px}
+  .hero__sub{font-size:clamp(17px,1.38vw,21px)}
+  .hero__sub2{font-size:clamp(14px,1.02vw,15.5px);margin-bottom:18px}
 }
 
 @media (prefers-reduced-motion:reduce){
