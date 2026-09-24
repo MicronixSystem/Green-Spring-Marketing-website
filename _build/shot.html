@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>shot</title>
+<style>html,body{margin:0;overflow:hidden;background:#fff}
+/* sized in CSS rather than from innerWidth, which is read before headless has
+   finished applying --window-size and leaves the frame wider than the shot */
+iframe{border:0;display:block}</style>
+</head>
+<body>
+<script>
+/* Screenshot harness. Headless Chrome ignores a scroll position set by a URL
+   hash, and the reveal animation leaves everything at opacity 0 until the
+   observer fires, so the page under test is framed here instead: loaded in a
+   same origin iframe at the window size, reveals forced on, then scrolled to
+   the section asked for. Whatever the window captures is that section.
+
+     chrome --headless=new --window-size=1440,1000 --virtual-time-budget=15000 \
+       --screenshot=out.png \
+       "http://127.0.0.1:8127/_build/shot.html?sel=.ab-team&off=-8"
+*/
+const q = new URLSearchParams(location.search);
+const PAGE = q.get('page') || '/about.html';
+const SEL = q.get('sel');
+const OFF = Number(q.get('off') || 0);
+
+/* the frame is sized from the query string, not from innerWidth or a viewport
+   unit. headless reports those before --window-size has finished applying, and
+   the frame ends up wider than the shot, which silently crops the right edge
+   and makes a clean page look like it overflows. */
+const f = document.createElement('iframe');
+f.style.width = (q.get('w') || 1440) + 'px';
+f.style.height = (q.get('h') || 900) + 'px';
+f.src = PAGE;
+document.body.appendChild(f);
+
+f.onload = async () => {
+  const d = f.contentDocument;
+  const st = d.createElement('style');
+  st.textContent = '*{transition:none!important;animation:none!important}' +
+                   '.rv,.cap,.flow,.rule{opacity:1!important;transform:none!important}';
+  d.head.appendChild(st);
+  d.querySelectorAll('.rv,.cap,.flow,.rule').forEach(e => e.classList.add('in'));
+  d.querySelectorAll('img').forEach(i => { i.loading = 'eager'; });
+  await new Promise(r => setTimeout(r, 700));
+  if (SEL) {
+    const el = d.querySelector(SEL);
+    if (el) {
+      const top = el.getBoundingClientRect().top + f.contentWindow.scrollY + OFF;
+      f.contentWindow.scrollTo({ top, behavior: 'instant' });
+    }
+  }
+  document.title = 'DONE';
+};
+</script>
+</body>
+</html>

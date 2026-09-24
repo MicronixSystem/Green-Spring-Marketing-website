@@ -143,12 +143,15 @@
 .ab-people__head p{color:var(--ink-soft);max-width:38ch;padding-bottom:.4em;
   font-size:clamp(17px,1.4vw,22px)}
 
-.people{display:grid;grid-template-columns:1fr 1fr;align-items:start}
+/* The hairline is drawn on the grid, not on the short column, so the divider
+   can run the full height without stretching anyone's box to reach it. */
+.people{display:grid;grid-template-columns:1fr 1fr;align-items:start;position:relative}
+.people::after{content:"";position:absolute;top:0;bottom:0;left:50%;
+  width:1px;background:rgba(23,61,46,.2)}
 .who{display:flex;flex-direction:column;gap:0;
   padding:0 clamp(24px,2.8vw,52px)}
 .who:first-child{padding-left:0}
-.who:last-child{padding-right:0;border-left:1px solid rgba(23,61,46,.2)}
-.people>.who:last-child{align-self:stretch}
+.who:last-child{padding-right:0}
 
 .who__top{display:flex;align-items:center;gap:clamp(18px,2vw,30px)}
 .who__face{flex:0 0 auto;width:clamp(104px,10.5vw,165px);overflow:hidden;
@@ -160,13 +163,61 @@
 .who__role{color:var(--forest);opacity:.78}
 .who__bio{color:var(--ink-soft);font-size:clamp(16px,1.28vw,20px);
   line-height:1.6;margin-top:clamp(22px,2.6vw,36px);padding-top:clamp(20px,2.3vw,32px);
+  border-top:1px solid rgba(23,61,46,.2);text-wrap:pretty}
+.who__bio p+p{margin-top:.85em}
+/* the opening paragraph carries the person, so it is set as a standfirst. it
+   gives the reader somewhere to land instead of five even paragraphs of grey */
+.who__lede{color:var(--forest);font-size:clamp(18px,1.56vw,25px);
+  line-height:1.42;letter-spacing:-.012em;margin-bottom:clamp(14px,1.5vw,20px)}
+.who__bio .who__lede+p{margin-top:0}
+
+/* the specialisms, kept as a scannable list rather than another paragraph.
+   this is also what stops the shorter of the two columns opening a hole: the
+   column is filled with something real, not stretched to reach the foot. */
+.who__focus{margin-top:clamp(22px,2.4vw,32px);padding-top:clamp(18px,2vw,26px);
   border-top:1px solid rgba(23,61,46,.2)}
-.who__tags{list-style:none;margin:clamp(22px,2.6vw,36px) 0 0;padding:clamp(20px,2.3vw,32px) 0 0;
-  border-top:1px solid rgba(23,61,46,.2);
-  display:flex;flex-wrap:wrap;gap:8px clamp(8px,.9vw,12px)}
-.who__tags li{font-size:clamp(12.5px,.92vw,14.5px);letter-spacing:.09em;
-  text-transform:uppercase;color:var(--forest);
-  border:1px solid rgba(23,61,46,.25);padding:.62em 1.05em}
+.who__focus .label{color:var(--forest);opacity:.78;margin-bottom:.9em}
+.who__focus ul{list-style:none;margin:0;padding:0}
+.who__focus li{color:var(--forest);font-family:var(--serif);font-weight:400;
+  font-size:clamp(17px,1.34vw,21px);letter-spacing:-.014em;
+  padding-block:clamp(9px,.95vw,13px);
+  border-bottom:1px solid rgba(23,61,46,.14)}
+.who__focus li:first-child{border-top:1px solid rgba(23,61,46,.14)}
+
+/* ==========================================================================
+   Team. The band above is two circular portraits either side of a hairline,
+   so this one is built as its opposite: warmer ground, upright frames with
+   square corners, three across, and the photograph carrying the column rather
+   than sitting beside a name. The bios run 44 to 55 words, so the three
+   columns come out within a line or two of each other on their own. Nothing
+   is stretched to reach the foot of the band, and the type is set to the
+   column it actually has rather than left small in a wide space.
+   ========================================================================== */
+.ab-team{background:var(--stone-warm);padding-block:clamp(56px,6.4vw,98px)}
+/* heading and the line that carries it sit on one baseline, so the row is
+   filled by the pair rather than by a short title and a lot of bare ground */
+.ab-team__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,40%);
+  gap:clamp(20px,3vw,56px);align-items:baseline;
+  padding-bottom:clamp(26px,3vw,44px);
+  border-bottom:1px solid rgba(23,61,46,.22);
+  margin-bottom:clamp(32px,3.6vw,56px)}
+.ab-team__head h2{color:var(--forest);max-width:17ch}
+.ab-team__head p{color:var(--ink-soft);font-size:clamp(17px,1.32vw,21px);
+  line-height:1.55;text-wrap:pretty}
+
+.team{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(26px,3vw,54px);align-items:start}
+.mate{display:flex;flex-direction:column}
+.mate__face{margin:0;overflow:hidden;background:var(--stone);aspect-ratio:7/5}
+.mate__face img{width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:grayscale(.12) contrast(1.02)}
+.mate__name{color:var(--forest);font-size:clamp(25px,2vw,33px);
+  line-height:1.04;letter-spacing:-.022em;margin-top:clamp(18px,1.9vw,26px)}
+.mate__role{color:var(--forest);opacity:.78;margin-top:.6em}
+.mate__bio{color:var(--ink-soft);font-size:clamp(16px,1.22vw,19px);
+  line-height:1.62;text-wrap:pretty;
+  margin-top:clamp(16px,1.7vw,22px);padding-top:clamp(15px,1.6vw,20px);
+  border-top:1px solid rgba(23,61,46,.2)}
 
 /* ==========================================================================
    Statement. The home page's dark band runs photograph left, white type right.
@@ -221,7 +272,6 @@
   .ab-hero__copy{grid-template-columns:1fr;align-items:start;gap:clamp(20px,3vw,32px)}
   .ab-hero__side{justify-content:flex-start;max-width:52ch}
   .ab-quote{grid-template-columns:minmax(0,1fr) minmax(0,38%)}
-  .who__bio{columns:1}
   .ab-close__in{grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(26px,3.4vw,44px)}
   .ab-close__copy{grid-column:1/-1;flex-direction:row;align-items:flex-end;
     justify-content:space-between;flex-wrap:wrap;
@@ -235,7 +285,7 @@
 @media (max-width:980px){
   .led{grid-template-columns:minmax(0,1fr) minmax(0,46%);gap:clamp(14px,2vw,28px)}
   .led__mark{display:none}
-  .ab-index__head,.ab-people__head{grid-template-columns:1fr}
+  .ab-index__head,.ab-people__head,.ab-team__head{grid-template-columns:1fr}
   .ab-index__head p,.ab-people__head p{padding-bottom:0}
   .ab-grow{grid-template-columns:1fr;min-height:0}
   .ab-grow__media{aspect-ratio:16/10}
@@ -248,6 +298,23 @@
   .ab-people{min-height:0}
   .people{grid-template-columns:1fr}
   .people{grid-template-columns:1fr}
+  /* three upright frames across get too narrow to hold a face here, so the
+     band turns on its side: picture left, name and bio right, one per row */
+  .team{grid-template-columns:1fr;gap:0}
+  /* the picture spans all three rows, so the rows have to be told to take
+     their size from their own content. without this the image's height is
+     shared out across them and the role label drifts away from the name. */
+  .mate{display:grid;grid-template-columns:minmax(0,40%) minmax(0,1fr);
+    grid-template-rows:max-content max-content 1fr;
+    column-gap:clamp(18px,3vw,32px);align-items:start;
+    padding-block:clamp(24px,3.4vw,36px)}
+  .mate+.mate{border-top:1px solid rgba(23,61,46,.2)}
+  .mate:first-child{padding-top:0}
+  .mate__face{grid-column:1;grid-row:1/span 3}
+  .mate__name{grid-column:2;grid-row:1;margin-top:0}
+  .mate__role{grid-column:2;grid-row:2}
+  .mate__bio{grid-column:2;grid-row:3}
+  .people::after{display:none}
   .who{padding:0}
   .who:first-child{padding-bottom:clamp(30px,4vw,44px)}
   .who:last-child{padding-top:clamp(30px,4vw,44px);
@@ -276,6 +343,18 @@
   .ab-close__meta{grid-template-columns:1fr}
   .ab-close__meta div{padding-block:14px}
   .ab-close__copy{flex-direction:column;align-items:flex-start}
+}
+
+/* Below this the row layout would have to choose between a thumbnail sized
+   face and a measure cut to ribbons, so the frame goes back on top at the full
+   column width and the text reads underneath it. */
+@media (max-width:520px){
+  /* align-items:start carries down from the row layout above; left in place it
+     would collapse the frame to nothing, because a flex item only takes the
+     width of the column when it is allowed to stretch into it */
+  .mate{display:flex;flex-direction:column;align-items:stretch;
+    padding-block:clamp(26px,6vw,34px)}
+  .mate__name{margin-top:clamp(16px,4vw,22px)}
 }
 
 /* Short desktop windows. The one screen sections are asked to hold real copy,

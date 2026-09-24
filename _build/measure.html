@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>measuring</title>
+<style>html,body{margin:0;background:#fff;font:13px ui-monospace,monospace}</style>
+</head>
+<body>
+<pre id="out">running</pre>
+<script>
+/* Headless measurement harness. Loads the page under test in same origin
+   iframes at a list of widths and reports the geometry that the design rules
+   actually care about, so a layout claim can be checked instead of eyeballed.
+
+   Served from the project root by serve.py, driven by Chrome on this machine:
+     chrome --headless=new --virtual-time-budget=25000 --dump-dom \
+       "http://127.0.0.1:8127/_build/measure.html?page=/about.html"
+*/
+const q = new URLSearchParams(location.search);
+const PAGE = q.get('page') || '/about.html';
+const WIDTHS = (q.get('w') || '360,390,480,520,560,640,768,860,980,1180,1440,1760')
+  .split(',').map(Number);
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+function parseColor(s) {
+  const m = (s.match(/[\d.]+/g) || [0, 0, 0, 0]).map(Number);
+  return m.length > 3 ? m.slice(0, 4) : [m[0], m[1], m[2], 1];
+}
+function bgBehind(el) {
+  let e = el;
+  while (e) {
+    const p = parseColor(getComputedStyle(e).backgroundColor);
+    if (p[3] > 0) return p;
+    e = e.parentElement;
+  }
+  return [255, 255, 255, 1];
+}
+const lum = c => {
+  const s = c.map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+  return 0.2126 * s[0] + 0.7152 * s[1] + 0.0722 * s[2];
+};
+const ratio = (a, b) => {
+  const l1 = lum(a), l2 = lum(b);
+  return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+};
+
+/* the reveal animation holds elements at opacity 0 until the observer fires,
+   and a transition outranks even an important override while it is running,
+   so transitions are killed before anything is measured */
+function settle(d) {
+  const st = d.createElement('style');
+  st.textContent = '*{transition:none!important;animation:none!important}' +
+                   '.rv,.cap,.flow,.rule{opacity:1!important;transform:none!important}';
+  d.head.appendChild(st);
+  d.querySelectorAll('.rv,.cap,.flow,.rule').forEach(e => e.classList.add('in'));
+  d.querySelectorAll('img').forEach(i => { i.loading = 'eager'; });
+}
+
+const box = el => {
+  const r = el.getBoundingClientRect();
+  return [Math.round(r.width), Math.round(r.height)];
+};
+
+async function atWidth(w) {
+  const f = document.createElement('iframe');
+  f.style.cssText = `position:absolute;left:-10000px;top:0;width:${w}px;height:900px;border:0`;
+  f.src = PAGE;
+  document.body.appendChild(f);
+  await new Promise(r => { f.onload = r; });
+  await sleep(500);
+  const d = f.contentDocument;
+  settle(d);
+  await sleep(500);
+
+  const out = { w, overflowX: d.documentElement.scrollWidth > w, docW: d.documentElement.scrollWidth };
+
+  const m0 = d.querySelector('.mate');
+  if (m0) {
+    const face = m0.querySelector('.mate__face');
+    const name = m0.querySelector('.mate__name').getBoundingClientRect();
+    const role = m0.querySelector('.mate__role').getBoundingClientRect();
+    const bio = m0.querySelector('.mate__bio');
+    const fs = parseFloat(getComputedStyle(bio).fontSize);
+    const mates = [...d.querySelectorAll('.mate')].map(x => Math.round(x.getBoundingClientRect().height));
+    out.face = box(face);
+    out.faceShareOfViewport = Math.round(box(face)[1] / 900 * 100) + '%';
+    out.bioCh = Math.round(bio.getBoundingClientRect().width / (fs * 0.5));
+    out.bioPx = Math.round(fs * 10) / 10;
+    out.nameToRole = Math.round(role.top - name.bottom);
+    out.mateSpread = Math.max(...mates) - Math.min(...mates);
+    out.teamH = Math.round(d.querySelector('.ab-team').getBoundingClientRect().height);
+  }
+  const who = [...d.querySelectorAll('.who')].map(x => Math.round(x.getBoundingClientRect().height));
+  if (who.length === 2) out.whoGap = Math.abs(who[0] - who[1]);
+
+  /* contrast, measured on the rendered page rather than from the stylesheet */
+  const sels = ['.ab-team__head h2', '.ab-team__head p', '.mate__name', '.mate__role',
+                /* :not(.who__lede) or this matches the standfirst and the body
+                   paragraphs, which are a different colour, go unchecked */
+                '.mate__bio', '.who__name', '.who__role', '.who__lede',
+                '.who__bio p:not(.who__lede)',
+                '.who__focus .label', '.who__focus li', '.ab-intro__stmt',
+                '.ab-quote blockquote p', '.ab-quote cite', '.ab-hero__stats b', '.ab-hero__stats span'];
+  out.contrast = sels.map(s => {
+    const el = d.querySelector(s);
+    if (!el) return s + ' MISSING';
+    const cs = getComputedStyle(el), fg = parseColor(cs.color);
+    let e = el, mult = 1;
+    while (e) { mult *= parseFloat(getComputedStyle(e).opacity); e = e.parentElement; }
+    const a = fg[3] * mult, bg = bgBehind(el.parentElement);
+    const comp = [0, 1, 2].map(i => fg[i] * a + bg[i] * (1 - a));
+    const r = ratio(comp, bg.slice(0, 3));
+    const px = parseFloat(cs.fontSize);
+    const large = px >= 24 || (px >= 18.66 && parseInt(cs.fontWeight) >= 700);
+    const need = large ? 3 : 4.5;
+    return `${r >= need ? 'PASS' : 'FAIL'} ${r.toFixed(2)}:1 need ${need} ${Math.round(px)}px ${s}`;
+  }).filter(x => x.startsWith('FAIL') || x.includes('MISSING') || w === 1440);
+
+  f.remove();
+  return out;
+}
+
+(async () => {
+  const all = [];
+  for (const w of WIDTHS) all.push(await atWidth(w));
+  document.getElementById('out').textContent = JSON.stringify(all, null, 1);
+  document.title = 'DONE';
+})();
+</script>
+</body>
+</html>
