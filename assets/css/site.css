@@ -128,6 +128,15 @@ p{margin:0}
   background:var(--forest);transform:scaleX(0);transform-origin:right;
   transition:transform .45s var(--ease-out)}
 .nav__link:hover::after,.nav__link[aria-current]::after{transform:scaleX(1);transform-origin:left}
+/* Portfolio and Editorial sit in the menu because the client asked for the five
+   headings now, but their pages are still being built. They are shown muted and
+   not clickable rather than pointed at nothing: her brief is explicit that only
+   live pages get links. Each one becomes an ordinary nav link as it is built.
+   The muting is done with colour alone, not opacity: at 5.48:1 these still read
+   properly, where a dimmed version fell to 2:1 and could not be read at all. */
+.nav__link--soon{color:var(--ink-soft);cursor:default}
+.nav__link--soon::after{display:none}
+
 .nav__tel{font-size:14px;color:var(--ink-soft);white-space:nowrap}
 .nav__tel:hover{color:var(--forest)}
 .nav__cta{padding:.95em 1.6em;font-size:11.5px}
@@ -148,6 +157,8 @@ body.menu-open .menu{clip-path:inset(0 0 0 0);visibility:visible}
   padding-block:10px;opacity:0;transform:translateY(18px);
   transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
 body.menu-open .menu>a{opacity:1;transform:none;transition-delay:calc(var(--i) * 70ms + 180ms)}
+/* same treatment on the mobile sheet for the headings that have no page yet */
+body.menu-open .menu>a:not([href]){opacity:.6;cursor:default}
 .menu__foot{margin-top:auto;padding-top:34px;border-top:1px solid rgba(237,235,229,.2);
   color:var(--moss);font-size:15px;display:grid;gap:8px;line-height:1.5}
 .menu__foot a{font-family:var(--sans);font-size:inherit;color:inherit}
@@ -360,6 +371,15 @@ body.menu-open .menu>a{opacity:1;transform:none;transition-delay:calc(var(--i) *
   .stmt__in{grid-template-columns:1fr;background:#000;
     padding-top:clamp(38px,5vw,58px)}
   .stmt__copy{grid-column:1;max-width:min(100%,620px);margin-left:0}
+}
+
+/* Five headings plus the number and the button is a lot of bar. Between 980 and
+   1100 the default gaps pushed the button onto two lines, so they tighten here
+   and the button is held on one line. */
+@media (max-width:1100px){
+  .nav__in{gap:clamp(14px,1.8vw,26px)}
+  .nav__links{gap:clamp(12px,1.4vw,19px)}
+  .nav__cta{padding:.95em 1.15em;white-space:nowrap}
 }
 
 @media (max-width:980px){

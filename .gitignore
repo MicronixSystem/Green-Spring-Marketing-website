@@ -21,3 +21,5 @@ __pycache__/
 _dev-*.html
 
 /email
+# Screenshot output from the verification tool
+/_shots
