@@ -139,7 +139,10 @@
   if (sections.length && 'IntersectionObserver' in window) {
     var links = {};
     document.querySelectorAll('.nav__link').forEach(function (a) {
-      links[a.getAttribute('href').slice(1)] = a;
+      /* the links for pages not built yet carry no href at all, so reading
+         one and slicing it threw and killed the rest of this block */
+      var href = a.getAttribute('href');
+      if (href && href.charAt(0) === '#') links[href.slice(1)] = a;
     });
     var visible = [];
     var sio = new IntersectionObserver(function (entries) {

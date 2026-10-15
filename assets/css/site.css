@@ -75,7 +75,11 @@ p{margin:0}
 }
 .btn:hover{color:var(--stone)}
 .btn:hover::before{transform:scaleY(1)}
-.btn .arw{transition:transform .5s var(--ease-out)}
+/* the shared #i-arrow symbol carries no paint attributes, so without this it
+   fills solid black and reads as a triangle instead of drawing an arrow */
+.btn .arw{fill:none;stroke:currentColor;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;
+  transition:transform .5s var(--ease-out)}
 .btn:hover .arw{transform:translateX(5px)}
 .btn--solid{background:var(--forest);color:var(--stone)}
 .btn--solid::before{background:var(--stone);}
@@ -215,11 +219,18 @@ body.menu-open .menu>a:not([href]){opacity:.6;cursor:default}
   max-width:24ch;padding-bottom:clamp(22px,2.4vw,34px);
   border-bottom:1px solid rgba(23,61,46,.22)}
 
+/* The copy has to start on the same vertical as the nav logo. It cannot be
+   done with padding here: 100vw counts the scrollbar and the layout does not,
+   which left this block about 7.5px right of the logo at 1920, and a 100%
+   padding would resolve against the column rather than the page. So the
+   gutter becomes a grid column of its own, measured off the full width. */
 .found__split{display:grid;align-items:stretch;
-  grid-template-columns:minmax(0,1fr) minmax(0,min(50%,880px))}
-.found__text{
-  padding-inline:max(var(--gut),calc((100vw - var(--maxw)) / 2 + var(--gut)))
-                clamp(34px,4.6vw,88px);
+  grid-template-columns:
+    max(var(--gut),calc((100% - var(--maxw)) / 2 + var(--gut)))
+    minmax(0,1fr)
+    minmax(0,min(50%,880px))}
+.found__text{grid-column:2;
+  padding-inline:0 clamp(34px,4.6vw,88px);
   padding-block:clamp(46px,5.4vw,90px)}
 .found__eyebrow{color:var(--forest);opacity:.78;margin-bottom:clamp(16px,1.8vw,26px)}
 .found__h2{color:var(--forest);font-size:clamp(38px,5vw,80px);line-height:.98;
@@ -231,7 +242,11 @@ body.menu-open .menu>a:not([href]){opacity:.6;cursor:default}
   font-size:clamp(21px,2vw,31px);line-height:1.22;letter-spacing:-.02em;max-width:22ch;
   margin-top:clamp(22px,2.4vw,34px);padding-top:clamp(22px,2.4vw,32px);
   border-top:1px solid rgba(23,61,46,.22)}
-.found__media{position:relative;margin:0;overflow:hidden;background:var(--stone-warm)}
+/* stated, not left to auto-placement: the text holds column 2 explicitly, so
+   the cursor would otherwise find column 1 free and drop the photograph into
+   the gutter */
+.found__media{grid-column:3;
+  position:relative;margin:0;overflow:hidden;background:var(--stone-warm)}
 .found__media img{position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:50% 46%}
 
@@ -395,9 +410,10 @@ body.menu-open .menu>a:not([href]){opacity:.6;cursor:default}
   .cap:nth-child(even){margin-top:0}
   .cap:nth-child(3),.cap:nth-child(4){margin-top:0}
   .found__split{grid-template-columns:1fr}
-  .found__text{padding-inline:var(--gut);padding-block:clamp(32px,4.6vw,54px)}
+  .found__text{grid-column:1;
+    padding-inline:var(--gut);padding-block:clamp(32px,4.6vw,54px)}
   .found__h2{max-width:16ch}
-  .found__media{aspect-ratio:16/10}
+  .found__media{grid-column:1;aspect-ratio:16/10}
   .flow__head{grid-template-columns:1fr}
   .flow__head p{padding-bottom:0}
   .flow__row{grid-template-columns:repeat(2,1fr);row-gap:clamp(30px,4vw,44px)}

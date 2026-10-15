@@ -1,0 +1,227 @@
+/* ==========================================================================
+   Approach page
+   Loads after site.css. Only what this page adds; everything shared (type
+   scale, .wrap, .btn, .rv reveals, nav, footer) comes from site.css.
+
+   Section rhythm, deliberately no two alike and none repeating the home or
+   about pages:
+     hero    vertical split, copy on its own ground, photo bleeding right
+     intro   quiet narrow measure on the warm ground
+     steps   four full-width bands alternating side and ground
+     rel     full-bleed photograph with the copy on a solid plate
+     cta     solid forest colour, no photograph at all
+   ========================================================================== */
+
+/* visually hidden, for the heading that labels the four stages to assistive
+   tech without putting a redundant title on the page */
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* ---------------------------------------------------------------- hero --- */
+/* Exactly one screen less the nav, never more. Because the height is fixed,
+   EVERY vertical measure here is capped against viewport height as well as
+   width. Capping only the headline is not enough: on a wide short window the
+   vw term wins, the headline grows, and the stack overflows the box. */
+.ap-hero{display:grid;
+  grid-template-columns:max(var(--gut),calc((100% - var(--maxw)) / 2 + var(--gut)))
+                        minmax(0,1fr) minmax(0,43%);
+  height:calc(100svh - var(--nav-h));margin-top:var(--nav-h);
+  background:var(--stone)}
+.ap-hero__copy{grid-column:2;display:flex;align-items:center;min-height:0;
+  padding-block:clamp(16px,2.7vh,54px);
+  padding-right:clamp(24px,4vw,64px)}
+.ap-hero__media{grid-column:3}
+.ap-hero__in{max-width:min(100%,720px)}
+/* same eyebrow treatment as the about hero, which clears AA where sage at this
+   size does not (3.04:1 against 4.5 needed) */
+.ap-hero__eyebrow{color:var(--forest);opacity:.78;margin-bottom:clamp(10px,min(1.5vw,1.7vh),20px)}
+.ap-hero h1{color:var(--forest);font-size:clamp(32px,min(5vw,7.6vh),80px);
+  line-height:1.04;letter-spacing:-.03em}
+.ap-hero h1 em{color:var(--sage);font-style:italic}
+.ap-hero .rule{margin:clamp(11px,min(1.7vw,2vh),26px) 0 clamp(9px,min(1.4vw,1.6vh),20px)}
+.ap-hero .lede{color:var(--ink-soft);max-width:52ch;
+  font-size:clamp(15px,min(1.42vw,2.3vh),22px)}
+
+/* The four stages, listed in the hero and linked to their bands further down.
+   Real content and a wayfinder for a long page, so the column is filled by
+   something worth reading rather than by stretching what was already there. */
+.ap-hero__index{list-style:none;margin:clamp(11px,min(1.7vw,2vh),26px) 0 0;padding:0;
+  border-top:1px solid rgba(23,61,46,.22);max-width:28em}
+.ap-hero__index li{border-bottom:1px solid rgba(23,61,46,.14)}
+.ap-hero__index a{display:flex;align-items:baseline;
+  gap:clamp(14px,1.5vw,24px);padding-block:clamp(4px,min(.72vw,1.05vh),11px);
+  color:var(--forest);font-family:var(--serif);
+  font-size:clamp(15px,min(1.45vw,2.4vh),23px);letter-spacing:-.012em}
+/* ink-soft rather than a dimmed forest: at this size these are small text and
+   need 4.5:1, which forest at 60% misses (3.41:1) and ink-soft clears (5.48:1) */
+.ap-hero__index i{font-style:italic;color:var(--ink-soft);font-size:.84em;
+  flex:0 0 auto;min-width:2.1em}
+/* colour is left alone on hover so the 10.1:1 contrast never drops */
+.ap-hero__index a:hover{text-decoration:underline;text-underline-offset:3px}
+.ap-hero__index a:hover i{color:var(--forest)}
+
+.ap-hero__media{position:relative;overflow:hidden;background:var(--stone-warm)}
+.ap-hero__media img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center}
+
+/* --------------------------------------------------------------- intro --- */
+.ap-intro{background:var(--stone-light);
+  padding-block:clamp(64px,8vw,122px)}
+/* A centred masthead with the body set two-up beneath it. Centred rather than
+   a narrow column pinned left, which would leave the right half of the band
+   dead, and a different skeleton from the split sections either side of it. */
+.ap-intro__in{display:grid;justify-items:center;gap:clamp(30px,3.8vw,56px)}
+.ap-intro__stmt{color:var(--forest);font-family:var(--serif);font-weight:300;
+  font-size:clamp(28px,3.4vw,54px);line-height:1.12;letter-spacing:-.028em;
+  text-align:center;text-wrap:balance;max-width:19ch}
+.ap-intro__stmt em{font-style:italic;color:var(--sage)}
+.ap-intro__cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(24px,3.4vw,60px);max-width:min(100%,1020px);
+  padding-top:clamp(24px,3vw,40px);border-top:1px solid rgba(23,61,46,.2);
+  color:var(--ink-soft);font-size:clamp(16px,1.3vw,20px);
+  line-height:1.62;text-wrap:pretty}
+
+/* --------------------------------------------------------------- steps --- */
+.step{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  align-items:center;gap:clamp(30px,4.6vw,84px);
+  padding-block:clamp(52px,6.4vw,104px);
+  padding-inline:max(var(--gut),calc((100% - var(--maxw)) / 2 + var(--gut)));
+  background:var(--stone)}
+/* the ground alternates with the side, so four bands in a row never settle
+   into one repeating shape */
+.step--flip{background:var(--stone-warm)}
+.step--flip .step__media{order:2}
+
+.step__media{margin:0;overflow:hidden;background:var(--stone-warm);
+  aspect-ratio:16/11}
+.step--flip .step__media{background:var(--stone)}
+.step__media img{width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:grayscale(.1) contrast(1.02)}
+
+.step__copy{max-width:min(100%,540px)}
+/* Forest at 60% rather than sage: sage reads 2.75:1 on the warm band, under the
+   3:1 large-text minimum, so it would fail on every other step. */
+.step__n{font-family:var(--serif);font-weight:300;font-style:italic;
+  color:var(--forest);opacity:.6;font-size:clamp(34px,3.6vw,58px);line-height:1;
+  letter-spacing:-.02em;margin-bottom:clamp(12px,1.4vw,20px)}
+.step__title{color:var(--forest);font-size:clamp(28px,2.9vw,46px);
+  line-height:1.06;letter-spacing:-.026em}
+.step__lead{color:var(--forest);font-family:var(--serif);font-size:clamp(18px,1.6vw,25px);
+  line-height:1.34;letter-spacing:-.014em;
+  margin-top:clamp(12px,1.4vw,18px);
+  padding-bottom:clamp(16px,1.8vw,24px);
+  border-bottom:1px solid rgba(23,61,46,.2)}
+.step__copy>p:last-child{color:var(--ink-soft);
+  font-size:clamp(16px,1.3vw,20px);line-height:1.62;
+  margin-top:clamp(16px,1.8vw,24px);text-wrap:pretty}
+
+/* --------------------------------------------------- relationship band --- */
+.ap-rel{position:relative;isolation:isolate;
+  padding-block:clamp(70px,9vw,150px);background:var(--forest-deep)}
+.ap-rel__media{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.ap-rel__media img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
+.ap-rel__in{display:flex;justify-content:flex-end}
+/* solid plate rather than a scrim over the photograph, so the picture is
+   never dulled to make the type work */
+.ap-rel__plate{background:var(--stone-light);
+  padding:clamp(30px,3.6vw,58px);max-width:min(100%,560px)}
+.ap-rel__plate h2{color:var(--forest);line-height:1.08;letter-spacing:-.024em}
+.ap-rel__plate p{color:var(--ink-soft);font-size:clamp(16px,1.3vw,20px);
+  line-height:1.62;margin-top:clamp(16px,1.8vw,24px);text-wrap:pretty}
+.ap-rel__callout{color:var(--forest)!important;font-family:var(--serif);
+  font-size:clamp(18px,1.5vw,24px)!important;line-height:1.38!important;
+  letter-spacing:-.014em;
+  margin-top:clamp(20px,2.2vw,30px)!important;
+  padding-top:clamp(18px,2vw,26px);
+  border-top:1px solid rgba(23,61,46,.2)}
+
+/* ----------------------------------------------------------------- cta --- */
+/* Two columns so the band carries its full width: the statement on the left,
+   everything you can act on gathered to the right. */
+.ap-cta{background:var(--forest);padding-block:clamp(70px,8.6vw,132px)}
+.ap-cta__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,42%);
+  gap:clamp(30px,5vw,90px);align-items:end}
+.ap-cta__kicker{color:var(--moss);margin-bottom:clamp(18px,2.2vw,30px)}
+.ap-cta h2{color:var(--stone);line-height:1.04;letter-spacing:-.03em;max-width:12ch}
+.ap-cta .lede{color:var(--moss);max-width:40ch}
+.ap-cta__btn{margin-top:clamp(24px,2.8vw,36px)}
+.ap-cta__meta{display:flex;flex-wrap:wrap;gap:clamp(16px,2.4vw,34px);
+  margin-top:clamp(28px,3.2vw,44px);padding-top:clamp(20px,2.4vw,30px);
+  border-top:1px solid rgba(237,235,229,.22);
+  color:var(--moss);font-size:15px}
+.ap-cta__meta a{color:inherit}
+.ap-cta__meta a:hover{color:var(--stone)}
+
+/* ========================================================================== */
+@media (max-width:980px){
+  .ap-hero h1{font-size:clamp(36px,min(5.6vw,9vh),58px)}
+}
+
+/* A short desktop window is the only case that cannot hold the hero at full
+   size. It gives up leading and a little type rather than losing the index. */
+@media (min-width:761px) and (max-height:730px){
+  .ap-hero h1{font-size:min(4.4vw,8.1vh)}
+  .ap-hero .lede{font-size:clamp(16px,1.25vw,19px)}
+  .ap-hero__index a{font-size:clamp(15px,1.2vw,19px)}
+  .ap-hero__index a{padding-block:clamp(4px,.55vw,8px)}
+}
+
+/* Shorter still, roughly a laptop with devtools open. Last tier before the
+   hero would have to drop content, which it never does. */
+@media (min-width:761px) and (max-height:660px){
+  .ap-hero__copy{padding-block:clamp(12px,2vh,22px)}
+  .ap-hero h1{font-size:min(4vw,7.2vh)}
+  .ap-hero .rule{margin:10px 0}
+  .ap-hero .lede{font-size:16px}
+  .ap-hero__index{margin-top:12px}
+  .ap-hero__index a{font-size:15px;padding-block:4px}
+}
+
+/* Phone held sideways. */
+@media (max-width:760px) and (max-height:620px){
+  .ap-hero__copy{padding-block:clamp(10px,2vh,18px)}
+  .ap-hero h1{font-size:min(5.6vw,8.4vh)}
+  .ap-hero .rule{margin:8px 0}
+  .ap-hero .lede{font-size:15px}
+  .ap-hero__index{margin-top:10px}
+  .ap-hero__index a{font-size:14px;padding-block:3px}
+}
+
+/* Below this the hero genuinely cannot hold one screen without shrinking the
+   type past reading size, so the cap is released and it is allowed to grow.
+   Better a hero that scrolls than one that cannot be read. */
+@media (max-height:460px){
+  .ap-hero{height:auto;min-height:calc(100svh - var(--nav-h))}
+}
+
+@media (max-width:860px){
+  .step{grid-template-columns:1fr;gap:clamp(22px,3.4vw,32px)}
+  /* the flip only means anything in two columns; stacked, the picture always
+     leads so the four bands keep one reading order */
+  .step--flip .step__media{order:0}
+  .step__copy{max-width:100%}
+}
+
+@media (max-width:760px){
+  /* The split becomes a stack and still holds to one screen: the copy takes
+     what it needs, the photograph takes whatever is left rather than being
+     given a ratio that would push the section past the fold. */
+  .ap-hero{grid-template-columns:1fr;grid-template-rows:auto minmax(130px,1fr)}
+  .ap-hero__copy,.ap-hero__media{grid-column:1}
+  .ap-hero__copy{padding:clamp(18px,3vh,44px) var(--gut) clamp(14px,2.2vh,32px)}
+  .ap-hero__in{margin-left:0;max-width:100%}
+  .ap-hero__media{position:relative;aspect-ratio:auto;min-height:0}
+  .ap-rel__in{justify-content:stretch}
+  .ap-rel__plate{max-width:100%}
+}
+
+@media (max-width:700px){
+  .ap-intro__cols{grid-template-columns:1fr;gap:clamp(14px,3vw,20px)}
+  .ap-cta__in{grid-template-columns:1fr;gap:clamp(26px,5vw,38px);align-items:start}
+  .ap-cta h2{max-width:100%}
+}
+
+@media (max-width:520px){
+  .ap-intro__stmt{max-width:100%}
+  .ap-cta__meta{gap:10px;flex-direction:column}
+}

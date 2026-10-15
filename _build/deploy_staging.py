@@ -34,7 +34,8 @@ STAGING = "new-staging"
 PUBLIC_URL = f"https://greenspringmarketing.com/{STAGING}"
 
 # Only these go up. Anything not matched here is not uploaded, full stop.
-INCLUDE_FILES = ["index.html", "about.html"]
+INCLUDE_FILES = ["index.html", "about.html", "approach.html", "capabilities.html",
+                 "editorial.html"]
 INCLUDE_DIRS = ["assets"]
 
 # Belt and braces on top of the allowlist.
@@ -44,6 +45,9 @@ NEVER = [
     # uncropped source material the client sent us; nothing on the pages
     # references it, so it has no business sitting on a public URL
     "*/from-client/*",
+    # raw full-size downloads kept for re-cropping. The pages only ever load
+    # the derived WebP in assets/img, so these are 22 MB nobody requests.
+    "*/photos/*", "*/photos-about/*",
 ]
 
 
